@@ -12,6 +12,10 @@
                     "v2raya-win.exe",
                     "v2raya",
                     "--lite"
+                ],
+                [
+                    "v2raya-win.exe",
+                    "v2raya-win"
                 ]
             ]
         }
