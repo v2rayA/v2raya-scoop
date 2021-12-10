@@ -24,5 +24,9 @@
     "env_set": {
         "V2RAYA_V2RAY_BIN": "$scoopdir\\apps\\v2ray\\current\\v2ray.exe"
     },
-    "notes": "WARNING: The database has been replaced with boltdb to try to solve the problem of database corruption. #267 Note that the data will not be migrated, but the previous data will be retained. If you need the previous data, just downgrade v2rayA (v1.5.4)."
+    "notes": [
+        "WARNING: ",
+        "The database has been replaced with boltdb to try to solve the problem of database corruption. #267",
+        "Note that the data will not be migrated, but the previous data will be retained. If you need the previous data, just downgrade v2rayA (v1.5.4)."
+    ]
 }
