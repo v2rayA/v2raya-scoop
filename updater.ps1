@@ -19,4 +19,5 @@ else {
     (Get-Content $v2rayaJSON) -replace $old_url, $url | out-file $v2rayaJSON
     Write-Host "v2rayA has been updated to version $version!"
     git commit -a -m "v2rayA: Update to version $version"
+    Remove-Item "$env:temp/v2raya_$version.exe" -Force
 }
