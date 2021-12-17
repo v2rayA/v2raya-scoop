@@ -9,11 +9,11 @@ if ($version -eq $old_version) {
 else {
     Write-Host "Update v2rayA scoop bucket to version $version..."
     $v2rayaJSON = Get-Item -LiteralPath ./bucket/v2raya.json | ForEach-Object  -Process { $_.FullName }
-    $hash = Get-FileHash $env:temp/v2raya_$version.exe | Select-Object Hash | ForEach-Object -Process { $_.hash }
     $old_hash = Get-Content ./bucket/v2raya.json | Select-String '"hash"'  | ForEach-Object { ([string]$_).Split(':')[1] } | ForEach-Object { ([string]$_).Split(',')[0] } | ForEach-Object { ([string]$_).Split('"')[1] }
     $url = "https://github.com/v2rayA/v2rayA/releases/download/v$version/v2raya_windows_x64_$version.exe"
     $old_url = Get-Content ./bucket/v2raya.json | Select-String '"url"'  | ForEach-Object { ([string]$_).Split('"')[3] }
     curl -L $url --output "$env:temp/v2raya_$version.exe"
+    $hash = Get-FileHash $env:temp/v2raya_$version.exe | Select-Object Hash | ForEach-Object -Process { $_.hash }
     (Get-Content $v2rayaJSON) -replace $old_version, $version | out-file $v2rayaJSON
     (Get-Content $v2rayaJSON) -replace $old_hash, $hash | out-file $v2rayaJSON
     (Get-Content $v2rayaJSON) -replace $old_url, $url | out-file $v2rayaJSON
