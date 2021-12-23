@@ -9,8 +9,6 @@ jobs:
     steps:
       - uses: Amadevus/pwsh-script@v2.0.1
       - run: |
-         git clone https://github.com/v2rayA/v2raya-scoop
-         git clone https://github.com/v2rayA/v2raya-scoop
          pwsh -c ./v2raya-scoop/updater.ps1
          
 
