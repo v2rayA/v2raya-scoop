@@ -6,25 +6,26 @@
     "architecture": {
         "64bit": {
             "url": "https://github.com/v2rayA/v2rayA/releases/download/v1.5.5/v2raya_windows_x64_1.5.5.exe",
-            "hash": "48A839260AE225D2E0101FFC72F61C83AE0CE2D518D425612EA4C257CD2011E0",
-            "bin": [
-                [
-                    "v2raya-win.exe",
-                    "v2raya",
-                    "--lite"
-                ],
-                [
-                    "v2raya-win.exe",
-                    "v2raya-win"
-                ]
-            ]
+            "hash": "48A839260AE225D2E0101FFC72F61C83AE0CE2D518D425612EA4C257CD2011E0"
         }
     },
+    "bin": [
+        [
+            "v2raya-win.exe",
+            "v2raya",
+            "--lite"
+        ],
+        [
+            "v2raya-win.exe",
+            "v2raya-win"
+        ]
+    ],
     "depends": "v2ray",
     "env_set": {
         "V2RAYA_V2RAY_BIN": "$scoopdir\\apps\\v2ray\\current\\v2ray.exe"
     },
     "notes": [
+        "Data will be saved to $env:HOME\\.config\\v2raya\\",
         "WARNING: ",
         "The database has been replaced with boltdb to try to solve the problem of database corruption. #267",
         "Note that the data will not be migrated, but the previous data will be retained. If you need the previous data, just downgrade v2rayA (v1.5.4)."

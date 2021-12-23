@@ -1,0 +1,11 @@
+name: Updater
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */8 * * *'
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Amadevus/pwsh-script@v2.0.1
+      - run: pwsh
