@@ -13,7 +13,3 @@ jobs:
          git clone https://github.com/v2rayA/v2raya-scoop ./v2raya-temp/v2raya-scoop
          cd ./v2raya-temp/v2raya-scoop
          pwsh -c ./updater.ps1
-         
-
-
-        

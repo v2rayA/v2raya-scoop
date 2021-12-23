@@ -1,7 +1,7 @@
 # NOTE: Use this PowerShell script in PowerShell Core BUT NOT Windows PowerShell!
 
-git clone https://github.com/v2rayA/v2raya-scoop $env:temp/v2raya-scoop
-Set-Location -Path $env:temp/v2raya-scoop
+# git clone https://github.com/v2rayA/v2raya-scoop $env:temp/v2raya-scoop
+# Set-Location -Path $env:temp/v2raya-scoop
 
 $v2rayaJSON = Get-Item -LiteralPath ./bucket/v2raya.json | ForEach-Object  -Process { $_.FullName }
 $version = curl --silent "https://api.github.com/repos/v2raya/v2raya/releases/latest" | Select-String -Pattern "tag_name" | ForEach-Object { ([string]$_).Split('v')[1] } |  ForEach-Object { ([string]$_).Split('"')[0] }
@@ -22,5 +22,8 @@ else {
     (Get-Content $v2rayaJSON) -replace $old_url, $url | out-file $v2rayaJSON
     Write-Host "v2rayA has been updated to version $version!"
     git commit -a -m "v2rayA: Update to version $version"
+    git config user.name "github-actions[bot]"
+    git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+    git push
     Remove-Item "$env:temp/v2raya_$version.exe" -Force
 }
