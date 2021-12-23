@@ -9,7 +9,6 @@ jobs:
     steps:
       - uses: Amadevus/pwsh-script@v2.0.1
       - run: |
-         apt install -y curl
          git clone https://github.com/v2rayA/v2raya-scoop $env:temp/v2raya-scoop; Set-Location -Path $env:temp/v2raya-scoop
          git clone https://github.com/v2rayA/v2raya-scoop $env:temp/v2raya-scoop
          Set-Location -Path $env:temp/v2raya-scoop
