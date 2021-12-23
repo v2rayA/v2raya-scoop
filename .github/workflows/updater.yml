@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: Amadevus/pwsh-script@v2.0.1
-      - run: pwsh
+      - run: pwsh -c updater.ps1
