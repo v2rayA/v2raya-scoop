@@ -1,7 +1,8 @@
 # NOTE: Use this PowerShell script in PowerShell Core BUT NOT Windows PowerShell!
 
-# git clone https://github.com/v2rayA/v2raya-scoop $env:temp/v2raya-scoop
-# Set-Location -Path $env:temp/v2raya-scoop
+# mkdir -Path $env:HOME/v2raya-temp
+# git clone https://github.com/v2rayA/v2raya-scoop $env:HOME/v2raya-temp/
+# Set-Location -Path $env:HOME/v2raya-temp/v2raya-scoop
 
 $v2rayaJSON = Get-Item -LiteralPath ./bucket/v2raya.json | ForEach-Object  -Process { $_.FullName }
 $version = curl --silent "https://api.github.com/repos/v2raya/v2raya/releases/latest" | Select-String -Pattern "tag_name" | ForEach-Object { ([string]$_).Split('v')[1] } |  ForEach-Object { ([string]$_).Split('"')[0] }
