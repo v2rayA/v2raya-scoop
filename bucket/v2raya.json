@@ -6,17 +6,23 @@
     "architecture": {
         "64bit": {
             "url": "https://github.com/v2rayA/v2rayA/releases/download/v1.5.5/v2raya_windows_x64_1.5.5.exe",
-            "hash": ""
+            "hash": "48a839260ae225d2e0101ffc72f61c83ae0ce2d518d425612ea4c257cd2011e0"
         }
+    },
+    "installer": {
+        "script": [
+
+            "Rename-Item -Path $dir\\v2raya_windows_x64_$version.exe -NewName v2rayaWin.exe -ErrorAction Ignore"
+        ]
     },
     "bin": [
         [
-            "v2raya-win.exe",
+            "v2rayaWin.exe",
             "v2raya",
             "--lite"
         ],
         [
-            "v2raya-win.exe",
+            "v2rayaWin.exe",
             "v2raya-win"
         ]
     ],
