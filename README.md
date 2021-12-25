@@ -23,7 +23,7 @@ scoop install v2raya
 
 ## How to use
 
-`v2raya` command has been shimed by Scoop to run v2rayA with `--lite` arg, `v2raya-win` command is the origin v2rayA.
+`v2raya` command has been shimed by Scoop to run v2rayA with `--lite` arg, `v2rayaWin` command is the origin v2rayA.
 
 Env `V2RAYA_V2RAY_BIN` will be set to `$scoopdir\apps\v2ray\current\v2ray.exe`.
 

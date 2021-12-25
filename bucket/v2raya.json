@@ -23,7 +23,7 @@
         ],
         [
             "v2rayaWin.exe",
-            "v2raya-win"
+            "v2rayaWin"
         ]
     ],
     "depends": "v2ray",
