@@ -17,14 +17,14 @@ else {
     $url = "https://github.com/v2rayA/v2rayA/releases/download/v$version/v2raya_windows_x64_$version.exe"
     $old_url = Get-Content $v2rayaJSON | Select-String '"url"'  | ForEach-Object { ([string]$_).Split('"')[3] }
     curl --location $url --output "$env:HOME/v2raya-temp/v2raya_$version.exe"
-    $hash = Get-FileHash $env:temp/v2raya_$version.exe | Select-Object Hash | ForEach-Object -Process { $_.hash }
+    $hash = Get-FileHash "$env:HOME/v2raya-temp/v2raya_$version.exe" | Select-Object Hash | ForEach-Object -Process { $_.hash }
     (Get-Content $v2rayaJSON) -replace $old_version, $version | out-file $v2rayaJSON
     (Get-Content $v2rayaJSON) -replace $old_hash, $hash | out-file $v2rayaJSON
     (Get-Content $v2rayaJSON) -replace $old_url, $url | out-file $v2rayaJSON
     Write-Host "v2rayA has been updated to version $version!"
-    git commit -a -m "v2rayA: Update to version $version"
     git config user.name "github-actions[bot]"
     git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+    git commit -a -m "v2rayA: Update to version $version"
     git push
     Remove-Item "$env:HOME/v2raya-temp/v2raya_$version.exe" -Force
 }
