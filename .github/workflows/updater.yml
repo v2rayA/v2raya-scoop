@@ -14,8 +14,7 @@ jobs:
       - uses: Amadevus/pwsh-script@v2.0.1
       - run: |
          mkdir ~/v2raya-temp/
-         git clone https://github.com/v2rayA/v2raya-scoop ~/v2raya-temp/v2raya-scoop
-         cd ~/v2raya-temp/v2raya-scoop
+         cd /home/runner/work/v2raya-scoop/v2raya-scoop
          pwsh -c ./updater.ps1
       - name: Push changes
         uses: ad-m/github-push-action@master
