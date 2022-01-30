@@ -22,9 +22,4 @@ else {
     (Get-Content $v2rayaJSON) -replace $old_hash, $hash | out-file $v2rayaJSON
     (Get-Content $v2rayaJSON) -replace $old_url, $url | out-file $v2rayaJSON
     Write-Host "v2rayA has been updated to version $version!"
-    git config user.name "github-actions[bot]"
-    git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-    git commit -a -m "v2rayA: Update to version $version"
-    git push
-    Remove-Item "$env:HOME/v2raya-temp/v2raya_$version.exe" -Force
 }
