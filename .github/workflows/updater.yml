@@ -7,9 +7,18 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
       - uses: Amadevus/pwsh-script@v2.0.1
       - run: |
          mkdir ~/v2raya-temp/
          git clone https://github.com/v2rayA/v2raya-scoop ~/v2raya-temp/v2raya-scoop
          cd ~/v2raya-temp/v2raya-scoop
          pwsh -c ./updater.ps1
+      - name: Push changes
+         uses: ad-m/github-push-action@master
+         with:
+           github_token: ${{ secrets.GITHUB_TOKEN }}
+           branch: ${{ github.ref }}
