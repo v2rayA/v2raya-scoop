@@ -18,7 +18,7 @@ jobs:
          cd ~/v2raya-temp/v2raya-scoop
          pwsh -c ./updater.ps1
       - name: Push changes
-         uses: ad-m/github-push-action@master
-         with:
-           github_token: ${{ secrets.GITHUB_TOKEN }}
-           branch: ${{ github.ref }}
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
