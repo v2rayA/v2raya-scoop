@@ -4,6 +4,12 @@
 # git clone https://github.com/v2rayA/v2raya-scoop $env:HOME/v2raya-temp/
 # Set-Location -Path $env:HOME/v2raya-temp/v2raya-scoop
 
+git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+git config --local user.name "github-actions[bot]"
+
+
+# Update v2rayA
+
 $v2rayaJSON = Get-Item -LiteralPath ./bucket/v2raya.json | ForEach-Object  -Process { $_.FullName }
 $version = curl --silent "https://api.github.com/repos/v2raya/v2raya/releases/latest" | Select-String -Pattern "tag_name" | ForEach-Object { ([string]$_).Split('v')[1] } |  ForEach-Object { ([string]$_).Split('"')[0] }
 $old_version = Get-Content $v2rayaJSON | Select-String '"version"' | ForEach-Object { ([string]$_).Split(':')[1] } | ForEach-Object { ([string]$_).Split(',')[0] } | ForEach-Object { ([string]$_).Split('"')[1] }
@@ -18,12 +24,30 @@ else {
     $old_url = Get-Content $v2rayaJSON | Select-String '"url"'  | ForEach-Object { ([string]$_).Split('"')[3] }
     curl --location $url --output "$env:HOME/v2raya-temp/v2raya_$version.exe"
     $hash = Get-FileHash "$env:HOME/v2raya-temp/v2raya_$version.exe" | Select-Object Hash | ForEach-Object -Process { $_.hash }
-    (Get-Content $v2rayaJSON) -replace $old_version, $version | out-file $v2rayaJSON
     (Get-Content $v2rayaJSON) -replace $old_hash, $hash | out-file $v2rayaJSON
     (Get-Content $v2rayaJSON) -replace $old_url, $url | out-file $v2rayaJSON
+    (Get-Content $v2rayaJSON) -replace $old_version, $version | out-file $v2rayaJSON
     Write-Host "v2rayA has been updated to version $version!"
-    git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-    git config --local user.name "github-actions[bot]"
-    git commit -m "v2rayA: Update to version $version" -a
-    # git push
+    git commit $v2rayaJSON -m "v2rayA: Update to version $version"
+}
+
+
+# Update extra v2ray rules data
+
+$DataJson = Get-Item -LiteralPath "./bucket/v2ray-rules-dat.json" | ForEach-Object  -Process { $_.FullName }
+$DataNewVersion = curl --silent "https://api.github.com/repos/Loyalsoldier/v2ray-rules-dat/releases/latest" | Select-String -Pattern "tag_name" | ForEach-Object { ([string]$_).Split('"')[3] }
+$DataOldVersion = Get-Content $DataJson | Select-String '"version"' | ForEach-Object { ([string]$_).Split(':')[1] } | ForEach-Object { ([string]$_).Split(',')[0] } | ForEach-Object { ([string]$_).Split('"')[1] }
+
+if ($DataNewVersion -eq $DataOldVersion) {
+    Write-Host "You have latest data files from Loyalsoldier/v2ray-rules-dat, enjoy!"
+}
+else {
+    (Get-Content $DataJson) -replace $DataOldVersion, $DataNewVersion | out-file $DataJson
+    $OldGeoIPHash = curl -Ls "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/$DataOldVersion/geoip.dat.sha256sum" | ForEach-Object { ([string]$_).Split(' ')[0] }
+    $NewGeoIPHash = curl -Ls "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/$DataNewVersion/geoip.dat.sha256sum" | ForEach-Object { ([string]$_).Split(' ')[0] }
+    (Get-Content $DataJson) -replace $OldGeoIPHash, $NewGeoIPHash | out-file $DataJson
+    $OldGeoSiteHash = curl -Ls "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/$DataOldVersion/geosite.dat.sha256sum" | ForEach-Object { ([string]$_).Split(' ')[0] }
+    $NewGeoSiteHash = curl -Ls "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/$DataNewVersion/geosite.dat.sha256sum" | ForEach-Object { ([string]$_).Split(' ')[0] }
+    (Get-Content $DataJson) -replace $OldGeoSiteHash, $NewGeoSiteHash | out-file $DataJson
+    git commit $DataJson -m "v2ray-rules-dat: Update to version $DataNewVersion"
 }
