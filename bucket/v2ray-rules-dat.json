@@ -1,15 +1,15 @@
 {
-    "version": "202202252211",
+    "version": "202202262209",
     "description": "Data files from Loyalsoldier/v2ray-rules-dat, works for v2ray and Xray.",
     "homepage": "https://github.com/Loyalsoldier/v2ray-rules-dat",
     "license": "GPL-3.0-only",
     "url": [
-        "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202202252211/geoip.dat",
-        "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202202252211/geosite.dat"
+        "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202202262209/geoip.dat",
+        "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202202262209/geosite.dat"
     ],
     "hash": [
         "85288951c6153872d4cc3c01d41aa7de9f6b8407074b6a0e0ccfc7ed953247e8",
-        "fa41b33be8b22dcc04d44dfba0027bb4389f3064e0d122e0a8508a2cfd1a9bdd"
+        "0c87be93d39423b0f42d4af9f5124430634830a9f78c947d1c6248ec11d31217"
     ],
     "depends": "v2ray",
     "env_set": {
