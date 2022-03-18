@@ -26,6 +26,7 @@
         ]
     ],
     "depends": "v2ray",
+    "suggest": "v2raya/v2ray-rules-dat",
     "env_set": {
         "V2RAYA_V2RAY_BIN": "$scoopdir\\apps\\v2ray\\current\\v2ray.exe"
     },
