@@ -3,7 +3,7 @@
 
 ## How to install
 
-It's suggest to use `scoop` in latest [PowerShell Core](https://aka.ms/PowerShell-Release?tag=stable)
+It's suggested to use `scoop` in latest [PowerShell Core](https://aka.ms/PowerShell-Release?tag=stable)
 
 Add bucket
 
