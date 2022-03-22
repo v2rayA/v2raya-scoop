@@ -9,7 +9,6 @@ git config --local user.name "github-actions[bot]"
 
 
 # Update v2rayA
-
 $v2rayaJSON = Get-Item -LiteralPath ./bucket/v2raya.json | ForEach-Object  -Process { $_.FullName }
 $version = curl --silent "https://api.github.com/repos/v2raya/v2raya/releases/latest" | Select-String -Pattern "tag_name" | ForEach-Object { ([string]$_).Split('v')[1] } |  ForEach-Object { ([string]$_).Split('"')[0] }
 $old_version = Get-Content $v2rayaJSON | Select-String '"version"' | ForEach-Object { ([string]$_).Split(':')[1] } | ForEach-Object { ([string]$_).Split(',')[0] } | ForEach-Object { ([string]$_).Split('"')[1] }
@@ -33,7 +32,6 @@ else {
 
 
 # Update extra v2ray rules data
-
 $DataJson = Get-Item -LiteralPath "./bucket/v2ray-rules-dat.json" | ForEach-Object  -Process { $_.FullName }
 $DataNewVersion = curl --silent "https://api.github.com/repos/Loyalsoldier/v2ray-rules-dat/releases/latest" | Select-String -Pattern "tag_name" | ForEach-Object { ([string]$_).Split('"')[3] }
 $DataOldVersion = Get-Content $DataJson | Select-String '"version"' | ForEach-Object { ([string]$_).Split(':')[1] } | ForEach-Object { ([string]$_).Split(',')[0] } | ForEach-Object { ([string]$_).Split('"')[1] }
@@ -50,4 +48,27 @@ else {
     $NewGeoSiteHash = curl -Ls "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/$DataNewVersion/geosite.dat.sha256sum" | ForEach-Object { ([string]$_).Split(' ')[0] }
     (Get-Content $DataJson) -replace $OldGeoSiteHash, $NewGeoSiteHash | out-file $DataJson
     git commit $DataJson -m "v2ray-rules-dat: Update to version $DataNewVersion"
+}
+
+
+# Update v2rayA git version
+$LatestSHA = curl -s https://api.github.com/repos/v2raya/v2raya/commits/master | Select-String "sha" | Select-Object -First 1 |  ForEach-Object { ([string]$_).Split('"')[3] }
+$JSONSHA = Get-Content ./bucket/v2raya-git.json | Select-String commit_sha |  ForEach-Object { ([string]$_).Split('"')[3] }
+$RunnerPath = Get-Item -LiteralPath ./ |ForEach-Object -Process { $_.FullName }
+$version_localjson = Get-Content ".\bucket\v2raya-git.json" | Select-String version | Select-Object -First 1| ForEach-Object { ([string]$_).Split('"')[3] }
+if ($LLatestSHA -eq $JSONSHA) {
+    Write-Host "毛大鹅 didn't update v2rayA anymore!"
+}else {
+    git clone https://github.com/v2raya/v2raya/ $HOME/v2rayA
+    Set-Location -Path $HOME/v2rayA
+    $DateLong_git = git log -1 --format="%cd" --date=short
+    $Date_git = $DateLong_git -replace "-"; ""
+    $count_git = git rev-list --count HEAD
+    $commit_git = git rev-parse --short HEAD
+    $version_git = "$Date_git.r$count_git.$commit_git"
+    Set-Location -Path $RunnerPath
+    (Get-Content "./bucket/v2raya-git.json") -replace $JSONSHA, $LatestSHA | out-file "./bucket/v2raya-git.json"
+    (Get-Content "./bucket/v2raya-git.json") -replace $version_localjson, $version_git | out-file "./bucket/v2raya-git.json"
+    Remove-Item -Path $HOME/v2rayA -Recurse -Force
+    git commit "./bucket/v2raya-git.json" -m "v2raya-git: Update to version $version_git"
 }
