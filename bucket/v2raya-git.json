@@ -47,7 +47,7 @@
             "        Remove-Item -Path $_.FullName",
             "    }",
             "}",
-            "$versions = 'unstable' + $version",
+            "$versions = 'Unstable-' + $version",
             "Set-Location -Path \"$dir/v2rayA-master/service\"",
             "go build -ldflags \"-X github.com/v2rayA/v2rayA/conf.Version=$versions -s -w\" -o \"$dir/v2rayaWin-git.exe\"",
             "Set-Location $PATHNOW",
