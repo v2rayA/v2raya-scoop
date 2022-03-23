@@ -56,7 +56,7 @@ $LatestSHA = curl -s https://api.github.com/repos/v2raya/v2raya/commits/master |
 $JSONSHA = Get-Content ./bucket/v2raya-git.json | Select-String commit_sha |  ForEach-Object { ([string]$_).Split('"')[3] }
 $RunnerPath = Get-Item -LiteralPath ./ |ForEach-Object -Process { $_.FullName }
 $version_localjson = Get-Content ".\bucket\v2raya-git.json" | Select-String version | Select-Object -First 1| ForEach-Object { ([string]$_).Split('"')[3] }
-if ($LLatestSHA -eq $JSONSHA) {
+if ($LatestSHA -eq $JSONSHA) {
     Write-Host "毛大鹅 didn't update v2rayA anymore!"
 }else {
     git clone https://github.com/v2raya/v2raya/ $HOME/v2rayA
