@@ -54,6 +54,10 @@
             "Remove-Item -Force -Recurse $dir\\v2rayA-master"
         ]
     },
+    "post_install": [
+        "Write-Host \"Data of v2rayA git version will be saved to $HOME\\.config\\v2raya\\\" as same as package 'v2raya' -ForegroundColor Magenta,",
+        "Write-Host \"If you want to run both of them, follow the official docs to change their ports. -ForegroundColor Magenta"
+    ],
     "bin": [
         [
             "v2rayaWin-git.exe",
@@ -71,7 +75,10 @@
         "nodejs-lts",
         "go"
     ],
-    "suggest": ["v2raya/v2ray-rules-dat","dorado/powershell"],
+    "suggest": [
+        "v2raya/v2ray-rules-dat",
+        "dorado/powershell"
+    ],
     "env_set": {
         "V2RAYA_V2RAY_BIN": "$scoopdir\\apps\\v2ray\\current\\v2ray.exe"
     }
