@@ -12,7 +12,8 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
       - uses: Amadevus/pwsh-script@v2.0.1
-      - run: |
+      - name: Checking update
+        run: |
          mkdir ~/v2raya-temp/
          cd /home/runner/work/v2raya-scoop/v2raya-scoop
          pwsh -c ./updater.ps1
