@@ -56,7 +56,7 @@
     },
     "post_install": [
         "Write-Host \"Data of v2rayA git version will be saved to $HOME\\.config\\v2raya\\\" as same as package 'v2raya' -ForegroundColor Magenta,",
-        "Write-Host \"If you want to run both of them, follow the official docs to change their ports. -ForegroundColor Magenta"
+        "Write-Host \"If you want to run both of them, follow the official docs to change the ports.\" -ForegroundColor Magenta"
     ],
     "bin": [
         [
