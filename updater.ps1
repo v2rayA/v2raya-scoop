@@ -8,7 +8,7 @@ git config --local user.name "github-actions[bot]"
 # Update v2rayA
 $url_v2raya_releases = "https://api.github.com/repos/v2rayA/v2rayA/releases/latest"
 $v2rayaJSON = Get-Item -LiteralPath ./bucket/v2raya.json | ForEach-Object  -Process { $_.FullName }
-$version = Invoke-WebRequest -Uri $url_v2raya_releases | ConvertFrom-Json | Select-Object tag_name | ForEach-Object { ([string]$_.tag_name).Split('v')[1] }
+$version = Invoke-WebRequest -Uri $url_v2raya_releases | ConvertFrom-Json | Select-Object tag_name | ForEach-Object { ([string]$_.'tag_name').Split('v')[1] }
 $old_version = Get-Content $v2rayaJSON | ConvertFrom-Json | Select-Object version | ForEach-Object { ($_.version)}
 
 if ($version -eq $old_version) {
@@ -31,7 +31,7 @@ else {
 # Update extra v2ray rules data
 $url_data = "https://api.github.com/repos/Loyalsoldier/v2ray-rules-dat/releases/latest"
 $DataJson = Get-Item -LiteralPath "./bucket/v2ray-rules-dat.json" | ForEach-Object  -Process { $_.FullName }
-$DataNewVersion = Invoke-WebRequest -Uri $url_data | ConvertFrom-Json | Select-Object "tag_name" | ForEach-Object { ([string]$_.tag_name) }
+$DataNewVersion = Invoke-WebRequest -Uri $url_data | ConvertFrom-Json | Select-Object "tag_name" | ForEach-Object { ([string]$_.'tag_name') }
 $DataOldVersion = Get-Content $DataJson | Select-String '"version"' | ForEach-Object { ([string]$_).Split(':')[1] } | ForEach-Object { ([string]$_).Split(',')[0] } | ForEach-Object { ([string]$_).Split('"')[1] }
 
 if ($DataNewVersion -eq $DataOldVersion) {
