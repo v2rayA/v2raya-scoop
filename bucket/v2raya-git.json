@@ -1,6 +1,6 @@
 {
-    "commit_sha": "f2895b47fef06323bf3e1e8ae3e8f97e6d29b0c4",
-    "version": "20220511.r1124.f2895b4",
+    "commit_sha": "4a50eafcf926ab05d12cb8566b76d6f6af2b2701",
+    "version": "20220515.r1126.4a50eaf",
     "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
     "homepage": "https://github.com/v2rayA/v2rayA",
     "license": "AGPL-3.0-only",
