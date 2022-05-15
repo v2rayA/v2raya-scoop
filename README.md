@@ -1,4 +1,5 @@
 # v2raya-scoop
+
 [Scoop](https://scoop.sh) bucket of v2rayA for Windows users.
 
 ## How to install
