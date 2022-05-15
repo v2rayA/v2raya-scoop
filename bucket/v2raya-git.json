@@ -108,5 +108,14 @@
     ],
     "env_set": {
         "V2RAYA_V2RAY_BIN": "$env:SCOOP\\apps\\v2ray\\current\\v2ray.exe"
+    },
+    "checkver": {
+        "url": "https://github.com/v2rayA/v2rayA/commits/master.atom",
+        "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>(?<short>[0-9a-f]{6})[0-9a-f]{34})",
+        "replace": "0.${1}.${2}.${3}.${short}"
+    },
+    "autoupdate": {
+        "url": "https://github.com/v2rayA/v2rayA/archive/$matchSha.zip",
+        "extract_dir": "v2rayA-$matchSha"
     }
 }
