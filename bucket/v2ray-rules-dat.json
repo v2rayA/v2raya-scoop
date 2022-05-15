@@ -27,5 +27,15 @@
     },
     "env_set": {
         "V2RAY_LOCATION_ASSET": "$dir"
+    },
+    "checkver": "github",
+    "autoupdate": {
+        "url": [
+            "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/$version/geoip.dat",
+            "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/$version/geosite.dat"
+        ],
+        "hash": {
+            "url": "$url.sha256sum"
+        }
     }
 }
