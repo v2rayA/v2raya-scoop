@@ -26,6 +26,6 @@
         ]
     },
     "env_set": {
-        "V2RAY_LOCATION_ASSET": "$dir"
+        "V2RAY_LOCATION_ASSET": "$env:SCOOP\\apps\\v2ray\\current\\"
     }
 }
