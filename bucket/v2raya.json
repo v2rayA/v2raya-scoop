@@ -21,8 +21,7 @@
         "if (Test-Path \"$persist_dir\\User Data\\*\") {",
         "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
         "    Copy-Item \"$persist_dir\\User Data\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
-        "}",
-        "Set-Content \"$dir\\v2raya.ps1\" -Value 'Start-Process -FilePath \"$env:SCOOP\\apps\\v2raya\\current\\v2rayaWin.exe\" -WorkingDirectory \"$env:SCOOP\\apps\\v2raya\\current\\\" -WindowStyle Hidden' -Encoding Ascii"
+        "}"
     ],
     "uninstaller": {
         "script": [
