@@ -78,7 +78,6 @@
             "Pop-Location"
         ]
     },
-    "post_install": "Set-Content \"$dir\\v2raya-git.ps1\" -Value 'Start-Process -FilePath \"$env:SCOOP\\apps\\v2raya-git\\current\\v2rayaWin-git.exe\" -WorkingDirectory \"$env:SCOOP\\apps\\v2raya-git\\current\\\" -WindowStyle Hidden' -Encoding Ascii",
     "uninstaller": {
         "script": [
             "info '[Portable Mode]: Backing up user data...'",
@@ -98,12 +97,6 @@
         [
             "v2rayaWin-git.exe",
             "v2rayaWin-git"
-        ]
-    ],
-    "shortcuts": [
-        [
-            "v2raya-git.ps1",
-            "v2rayA-git"
         ]
     ],
     "env_set": {
