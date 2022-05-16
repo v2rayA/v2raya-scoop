@@ -49,23 +49,23 @@ else {
 }
 
 # Update v2rayA git version
-$LatestSHA = Invoke-WebRequest -Uri https://api.github.com/repos/v2raya/v2raya/commits/master | ConvertFrom-Json | Select-Object "sha" | ForEach-Object { ($_.sha) }
-$JSONSHA = Get-Content ./bucket/v2raya-git.json | Select-String commit_sha |  ForEach-Object { ([string]$_).Split('"')[3] }
-$RunnerPath = Get-Item -LiteralPath ./ |ForEach-Object -Process { $_.FullName }
-$version_localjson = Get-Content ".\bucket\v2raya-git.json" | Select-String version | Select-Object -First 1| ForEach-Object { ([string]$_).Split('"')[3] }
-if ($LatestSHA -eq $JSONSHA) {
-    Write-Host "You have latest v2rayA git version!"
-}else {
-    git clone https://github.com/v2raya/v2raya/ $HOME/v2rayA
-    Set-Location -Path $HOME/v2rayA
-    $DateLong_git = git log -1 --format="%cd" --date=short
-    $Date_git = $DateLong_git -replace "-"; ""
-    $count_git = git rev-list --count HEAD
-    $commit_git = git rev-parse --short HEAD
-    $version_git = "$Date_git.r$count_git.$commit_git"
-    Set-Location -Path $RunnerPath
-    (Get-Content "./bucket/v2raya-git.json") -replace $JSONSHA, $LatestSHA | out-file "./bucket/v2raya-git.json"
-    (Get-Content "./bucket/v2raya-git.json") -replace $version_localjson, $version_git | out-file "./bucket/v2raya-git.json"
-    Remove-Item -Path $HOME/v2rayA -Recurse -Force
-    git commit "./bucket/v2raya-git.json" -m "v2raya-git: Update to version $version_git"
-}
+# $LatestSHA = Invoke-WebRequest -Uri https://api.github.com/repos/v2raya/v2raya/commits/master | ConvertFrom-Json | Select-Object "sha" | ForEach-Object { ($_.sha) }
+# $JSONSHA = Get-Content ./bucket/v2raya-git.json | Select-String commit_sha |  ForEach-Object { ([string]$_).Split('"')[3] }
+# $RunnerPath = Get-Item -LiteralPath ./ |ForEach-Object -Process { $_.FullName }
+# $version_localjson = Get-Content ".\bucket\v2raya-git.json" | Select-String version | Select-Object -First 1| ForEach-Object { ([string]$_).Split('"')[3] }
+# if ($LatestSHA -eq $JSONSHA) {
+#     Write-Host "You have latest v2rayA git version!"
+# }else {
+#     git clone https://github.com/v2raya/v2raya/ $HOME/v2rayA
+#     Set-Location -Path $HOME/v2rayA
+#     $DateLong_git = git log -1 --format="%cd" --date=short
+#     $Date_git = $DateLong_git -replace "-"; ""
+#     $count_git = git rev-list --count HEAD
+#     $commit_git = git rev-parse --short HEAD
+#     $version_git = "$Date_git.r$count_git.$commit_git"
+#     Set-Location -Path $RunnerPath
+#     (Get-Content "./bucket/v2raya-git.json") -replace $JSONSHA, $LatestSHA | out-file "./bucket/v2raya-git.json"
+#     (Get-Content "./bucket/v2raya-git.json") -replace $version_localjson, $version_git | out-file "./bucket/v2raya-git.json"
+#     Remove-Item -Path $HOME/v2rayA -Recurse -Force
+#     git commit "./bucket/v2raya-git.json" -m "v2raya-git: Update to version $version_git"
+# }
