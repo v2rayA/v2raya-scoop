@@ -24,9 +24,9 @@
             "#ensure \"$persist_dir\" | Out-Null",
             "#New-Item \"$env:UserProfile\\.config\\v2raya\" -ItemType Junction -Target \"$persist_dir\" | Out-Null",
             "info '[Portable Mode]: Copying user data...'",
-            "if (Test-Path \"$persist_dir\\User Data\\*\") {",
+            "if (Test-Path \"$persist_dir\\*\") {",
             "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
-            "    Copy-Item \"$persist_dir\\User Data\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
+            "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
             "}",
             "Set-Content \"$dir\\start-v2raya.ps1\" -Value 'sudo Start-Process -FilePath \"$env:SCOOP\\apps\\v2raya\\current\\v2rayaWin.exe\" -ArgumentList \"--lite\" -WorkingDirectory \"$env:SCOOP\\apps\\v2raya\\current\\\" -WindowStyle Hidden' -Encoding Ascii",
             "Set-Content \"$dir\\stop-v2raya.ps1\" -Value 'sudo Stop-Process -Name v2raya* -ErrorAction Ignore -Force' -Encoding Ascii"
@@ -36,8 +36,8 @@
         "script": [
             "info '[Portable Mode]: Backing up user data...'",
             "if (Test-Path \"$env:UserProfile\\.config\\v2raya\\*\") {",
-            "    ensure \"$persist_dir\\User Data\" | Out-Null",
-            "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\User Data\\\" -Recurse -Force | Out-Null",
+            "    ensure \"$persist_dir\" | Out-Null",
+            "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\\" -Recurse -Force | Out-Null",
             "}",
             "#Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
         ]

@@ -26,9 +26,9 @@
     },
     "pre_install": [
         "info '[Portable Mode]: Copying user data...'",
-        "if (Test-Path \"$persist_dir\\User Data\\*\") {",
+        "if (Test-Path \"$persist_dir\\*\") {",
         "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
-        "    Copy-Item \"$persist_dir\\User Data\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
+        "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
         "}"
     ],
     "installer": {
@@ -87,7 +87,7 @@
             "info '[Portable Mode]: Backing up user data...'",
             "if (Test-Path \"$env:UserProfile\\.config\\v2raya\\*\") {",
             "    ensure \"$persist_dir\" | Out-Null",
-            "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\User Data\\\" -Recurse -Force | Out-Null",
+            "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\\" -Recurse -Force | Out-Null",
             "}",
             "#Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
         ]
