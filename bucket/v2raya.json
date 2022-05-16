@@ -25,8 +25,8 @@
             "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
             "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
             "}",
-            "Set-Content \"$dir\\start-v2raya.ps1\" -Value 'Start-Process -FilePath \"$env:SCOOP\\apps\\v2raya\\current\\v2rayaWin.exe\" -ArgumentList @('--lite', '--log-file v2raya.log') -WorkingDirectory \"$env:SCOOP\\apps\\v2raya\\current\\\" -WindowStyle Hidden' -Encoding Ascii",
-            "Set-Content \"$dir\\stop-v2raya.ps1\" -Value 'Stop-Process -Name v2raya* -ErrorAction Ignore -Force' -Encoding Ascii"
+            "Set-Content \"$dir\\start-v2raya.ps1\" -Value 'Start-Process -FilePath \"$dir\\v2rayaWin.exe\" -ArgumentList @('--lite', '--log-file v2raya.log') -WorkingDirectory \"$env:LocalAppData\\Temp\" -WindowStyle Hidden' -Encoding Ascii",
+            "Set-Content \"$dir\\stop-v2raya.ps1\" -Value 'Stop-Process -Name v2rayawin -ErrorAction Ignore -Force' -Encoding Ascii"
         ]
     },
     "uninstaller": {
