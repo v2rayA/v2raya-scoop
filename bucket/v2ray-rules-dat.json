@@ -34,6 +34,6 @@
         ]
     },
     "env_set": {
-        "V2RAY_LOCATION_ASSET": "$(appdir v2ray $global)\\current\\"
+        "V2RAY_LOCATION_ASSET": "$(scoop prefix v2ray)"
     }
 }
