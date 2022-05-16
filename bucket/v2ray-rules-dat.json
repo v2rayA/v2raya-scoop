@@ -2,7 +2,11 @@
     "version": "202205152211",
     "description": "Data files from Loyalsoldier/v2ray-rules-dat, works for v2ray and Xray.",
     "homepage": "https://github.com/Loyalsoldier/v2ray-rules-dat",
-    "license": "GPL-3.0-only",
+    "license": {
+        "identifier": "GPL-3.0-or-later",
+        "url": "https://github.com/Loyalsoldier/v2ray-rules-dat/blob/master/LICENSE"
+    },
+    "depends": "v2ray",
     "url": [
         "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202205152211/geoip.dat",
         "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202205152211/geosite.dat"
@@ -13,13 +17,23 @@
     ],
     "installer": {
         "script": [
-            "Write-Host \"Linking geosite.dat to LoyalsoldierSite.dat to make v2rayA happy...\" -ForegroundColor Yellow",
-            "New-Item -ItemType Hardlink -Path $dir\\LoyalsoldierSite.dat -Target $dir\\geosite.dat",
+            "@('LoyalsoldierSite.dat', 'LoyalsoldierGeoIP.dat', 'geosite.dat', 'geoip.dat') | ForEach-Object { Remove-Item \"$(appdir v2ray $global)\\current\\$_\" -Force -ErrorAction SilentlyContinue }",
+            "New-Item \"$(appdir v2ray $global)\\current\\LoyalsoldierSite.dat\" -ItemType HardLink -Target \"$dir\\geosite.dat\" | Out-Null",
+            "New-Item \"$(appdir v2ray $global)\\current\\LoyalsoldierIP.dat\" -ItemType HardLink -Target \"$dir\\geoip.dat\" | Out-Null",
+            "New-Item \"$(appdir v2ray $global)\\current\\geosite.dat\" -ItemType HardLink -Target \"$dir\\geosite.dat\" | Out-Null",
+            "New-Item \"$(appdir v2ray $global)\\current\\geoip.dat\" -ItemType HardLink -Target \"$dir\\geoip.dat\" | Out-Null",
             "Write-Host \"v2ray-rules-dat installation finished, it's suggested to restart your applications using v2ray-rules-dat now.\" -ForegroundColor Magenta"
         ]
     },
-    "depends": "v2ray",
+    "uninstaller": {
+        "script": [
+            "Remove-Item \"$(appdir v2ray $global)\\current\\LoyalsoldierIP.dat\" -ErrorAction 'SilentlyContinue' -Force",
+            "Remove-Item \"$(appdir v2ray $global)\\current\\LoyalsoldierSite.dat\" -ErrorAction 'SilentlyContinue' -Force",
+            "Remove-Item \"$(appdir v2ray $global)\\current\\geosite.dat\" -ErrorAction 'SilentlyContinue' -Force",
+            "Remove-Item \"$(appdir v2ray $global)\\current\\geoip.dat\" -ErrorAction 'SilentlyContinue' -Force"
+        ]
+    },
     "env_set": {
-        "V2RAY_LOCATION_ASSET": "$dir"
+        "V2RAY_LOCATION_ASSET": "$(scoop prefix v2ray)"
     }
 }

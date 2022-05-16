@@ -1,14 +1,39 @@
 {
-    "commit_sha": "4a50eafcf926ab05d12cb8566b76d6f6af2b2701",
-    "version": "20220515.r1126.4a50eaf",
+    "version": "0.2022.05.11.f2895b",
     "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
-    "homepage": "https://github.com/v2rayA/v2rayA",
-    "license": "AGPL-3.0-only",
-    "url": "https://github.com/v2rayA/v2rayA/archive/refs/heads/master.zip",
+    "homepage": "https://github.com/v2rayA/v2raya",
+    "license": {
+        "identifier": "AGPL-3.0-only",
+        "url": "https://github.com/v2rayA/v2rayA/blob/master/LICENSE"
+    },
+    "notes": "If you want to run both 'v2raya' and 'v2raya-git', follow the official docs to change the ports.",
+    "depends": [
+        "v2ray",
+        "yarn",
+        "nodejs-lts",
+        "go"
+    ],
+    "suggest": {
+        "v2ray-rules-dat": "v2raya/v2ray-rules-dat",
+        "powershell": "dorado/powershell"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/v2rayA/v2rayA/archive/f2895b47fef06323bf3e1e8ae3e8f97e6d29b0c4.zip",
+            "hash": "5af4e00e53300aca91c57202584062ac79735472fc825cd5d240d3bea825b4ea",
+            "extract_dir": "v2rayA-f2895b47fef06323bf3e1e8ae3e8f97e6d29b0c4"
+        }
+    },
+    "pre_install": [
+        "info '[Portable Mode]: Copying user data...'",
+        "if (Test-Path \"$persist_dir\\*\") {",
+        "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
+        "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
+        "}"
+    ],
     "installer": {
         "script": [
-            "$PATHNOW = Get-Item -LiteralPath ./ |ForEach-Object -Process { $_.FullName }",
-            "Set-Location $dir/v2rayA-master",
+            "Push-Location $dir",
             "# zip web files",
             "Function Gzip-File([ValidateScript({Test-Path $_})][string]$File){",
             "    $srcFile = Get-Item -Path $File",
@@ -37,27 +62,36 @@
             "# See https://go.dev/doc/go1.18 for more informations",
             "${env:GOAMD64} = \"v2\"",
             "## Set yarn's output path",
-            "${env:OUTPUT_DIR} = \"$dir/v2rayA-master/service/server/router/web\"",
+            "${env:OUTPUT_DIR} = \"$dir/service/server/router/web\"",
             "# Build v2rayA",
-            "Set-Location -Path \"$dir/v2rayA-master/gui\"",
+            "Set-Location -Path \"$dir/gui\"",
             "yarn; yarn build",
-            "Get-ChildItem \"$dir/v2rayA-master/service/server/router/web\" -recurse |Where-Object{$_.PSIsContainer -eq $False}|ForEach-Object -Process{",
+            "Get-ChildItem \"$dir/service/server/router/web\" -recurse |Where-Object{$_.PSIsContainer -eq $False}|ForEach-Object -Process{",
             "    if($_.Extension -ne \".png\" -and $_.Extension -ne \".gz\" -and $_.Name -ne \"index.html\"){",
             "        Gzip-File($_.FullName)",
             "        Remove-Item -Path $_.FullName",
             "    }",
             "}",
-            "$versions = 'Unstable-' + $version",
-            "Set-Location -Path \"$dir/v2rayA-master/service\"",
+            "$versions = 'unstable-' + $version",
+            "Set-Location -Path \"$dir/service\"",
             "go build -ldflags \"-X github.com/v2rayA/v2rayA/conf.Version=$versions -s -w\" -o \"$dir/v2rayaWin-git.exe\"",
-            "Set-Location $PATHNOW",
-            "Remove-Item -Force -Recurse $dir\\v2rayA-master"
+            "Pop-Location"
         ]
     },
     "post_install": [
-        "Write-host \"Data of v2rayA git version will be saved to $HOME\\.config\\v2raya as same as package 'v2raya'\" -ForegroundColor Magenta",
-        "Write-host \"If you want to run both of them, follow the official docs to change the ports.\" -ForegroundColor Magenta"
+        "Set-Content \"$dir\\start-v2raya-git.ps1\" -Value 'Start-Process -FilePath \"$(scoop prefix v2raya-git)\\v2rayaWin-git.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya-git.log\") -WorkingDirectory \"$env:TEMP\" -WindowStyle Hidden' -Encoding Ascii",
+        "Set-Content \"$dir\\stop-v2raya-git.ps1\" -Value 'Stop-Process -Name v2rayawin-git -ErrorAction Ignore -Force' -Encoding Ascii"
     ],
+    "uninstaller": {
+        "script": [
+            "info '[Portable Mode]: Backing up user data...'",
+            "if (Test-Path \"$env:UserProfile\\.config\\v2raya\\*\") {",
+            "    ensure \"$persist_dir\" | Out-Null",
+            "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\\" -Recurse -Force | Out-Null",
+            "}",
+            "#Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
+        ]
+    },
     "bin": [
         [
             "v2rayaWin-git.exe",
@@ -67,19 +101,11 @@
         [
             "v2rayaWin-git.exe",
             "v2rayaWin-git"
-        ]
-    ],
-    "depends": [
-        "v2ray",
-        "yarn",
-        "nodejs-lts",
-        "go"
-    ],
-    "suggest": [
-        "v2raya/v2ray-rules-dat",
-        "dorado/powershell"
+        ],
+        "start-v2raya-git.ps1",
+        "stop-v2raya-git.ps1"
     ],
     "env_set": {
-        "V2RAYA_V2RAY_BIN": "$scoopdir\\apps\\v2ray\\current\\v2ray.exe"
+        "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe"
     }
 }
