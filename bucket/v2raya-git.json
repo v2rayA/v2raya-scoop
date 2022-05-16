@@ -26,9 +26,9 @@
     },
     "pre_install": [
         "info '[Portable Mode]: Copying user data...'",
-        "if (Test-Path \"$persist_dir\\User Data\\*\") {",
+        "if (Test-Path \"$persist_dir\\*\") {",
         "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
-        "    Copy-Item \"$persist_dir\\User Data\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
+        "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
         "}"
     ],
     "installer": {
@@ -78,13 +78,16 @@
             "Pop-Location"
         ]
     },
-    "post_install": "Set-Content \"$dir\\v2raya-git.ps1\" -Value 'Start-Process -FilePath \"$env:SCOOP\\apps\\v2raya-git\\current\\v2rayaWin-git.exe\" -WorkingDirectory \"$env:SCOOP\\apps\\v2raya-git\\current\\\" -WindowStyle Hidden' -Encoding Ascii",
+    "post_install": [
+        "Set-Content \"$dir\\start-v2raya-git.ps1\" -Value 'Start-Process -FilePath \"$(scoop prefix v2raya)\\v2rayaWin-git.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya.log\") -WorkingDirectory \"$env:TEMP\" -WindowStyle Hidden' -Encoding Ascii",
+        "Set-Content \"$dir\\stop-v2raya-git.ps1\" -Value 'Stop-Process -Name v2rayawin-git -ErrorAction Ignore -Force' -Encoding Ascii"
+    ],
     "uninstaller": {
         "script": [
             "info '[Portable Mode]: Backing up user data...'",
             "if (Test-Path \"$env:UserProfile\\.config\\v2raya\\*\") {",
             "    ensure \"$persist_dir\" | Out-Null",
-            "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\User Data\\\" -Recurse -Force | Out-Null",
+            "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\\" -Recurse -Force | Out-Null",
             "}",
             "#Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
         ]
@@ -98,16 +101,12 @@
         [
             "v2rayaWin-git.exe",
             "v2rayaWin-git"
-        ]
-    ],
-    "shortcuts": [
-        [
-            "v2raya-git.ps1",
-            "v2rayA-git"
-        ]
+        ],
+        "start-v2raya-git.ps1",
+        "stop-v2raya-git.ps1"
     ],
     "env_set": {
-        "V2RAYA_V2RAY_BIN": "$env:SCOOP\\apps\\v2ray\\current\\v2ray.exe"
+        "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe"
     },
     "checkver": {
         "url": "https://github.com/v2rayA/v2rayA/commits/master.atom",
