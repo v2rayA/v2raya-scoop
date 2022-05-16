@@ -6,7 +6,10 @@
         "identifier": "AGPL-3.0-only",
         "url": "https://github.com/v2rayA/v2rayA/blob/master/LICENSE"
     },
-    "depends": "v2ray",
+    "depends": [
+        "sudo",
+        "v2ray"
+    ],
     "suggest": {
         "v2ray-rules-dat": "v2raya/v2ray-rules-dat"
     },
@@ -16,18 +19,24 @@
             "hash": "9c38da0a3f8f49d0c5e72f3e284fa33f04e6de5cbc09f32a1c27eb0a966f7487"
         }
     },
-    "pre_install": [
-        "info '[Portable Mode]: Copying user data...'",
-        "if (Test-Path \"$persist_dir\\User Data\\*\") {",
-        "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
-        "    Copy-Item \"$persist_dir\\User Data\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
-        "}"
-    ],
+    "installer": {
+        "script": [
+            "#ensure \"$persist_dir\" | Out-Null",
+            "#New-Item \"$env:UserProfile\\.config\\v2raya\" -ItemType Junction -Target \"$persist_dir\" | Out-Null",
+            "info '[Portable Mode]: Copying user data...'",
+            "if (Test-Path \"$persist_dir\\User Data\\*\") {",
+            "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
+            "    Copy-Item \"$persist_dir\\User Data\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
+            "}",
+            "Set-Content \"$dir\\start-v2raya.ps1\" -Value 'sudo Start-Process -FilePath \"$env:SCOOP\\apps\\v2raya\\current\\v2rayaWin.exe\" -ArgumentList \"--lite\" -WorkingDirectory \"$env:SCOOP\\apps\\v2raya\\current\\\" -WindowStyle Hidden' -Encoding Ascii",
+            "Set-Content \"$dir\\stop-v2raya.ps1\" -Value 'sudo Stop-Process -Name v2raya* -ErrorAction Ignore -Force' -Encoding Ascii"
+        ]
+    },
     "uninstaller": {
         "script": [
             "info '[Portable Mode]: Backing up user data...'",
             "if (Test-Path \"$env:UserProfile\\.config\\v2raya\\*\") {",
-            "    ensure \"$persist_dir\" | Out-Null",
+            "    ensure \"$persist_dir\\User Data\" | Out-Null",
             "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\User Data\\\" -Recurse -Force | Out-Null",
             "}",
             "#Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
@@ -42,9 +51,11 @@
         [
             "v2rayaWin.exe",
             "v2rayaWin"
-        ]
+        ],
+        "start-v2raya.ps1",
+        "stop-v2raya.ps1"
     ],
     "env_set": {
-        "V2RAYA_V2RAY_BIN": "$env:SCOOP\\apps\\v2ray\\current\\v2ray.exe"
+        "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\current\\v2ray.exe"
     }
 }

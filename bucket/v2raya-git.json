@@ -78,6 +78,10 @@
             "Pop-Location"
         ]
     },
+    "post_install": [
+        "Set-Content \"$dir\\start-v2raya-git.ps1\" -Value 'sudo Start-Process -FilePath \"$env:SCOOP\\apps\\v2raya\\current\\v2rayaWin-git.exe\" -ArgumentList \"--lite\" -WorkingDirectory \"$env:SCOOP\\apps\\v2raya\\current\\\" -WindowStyle Hidden' -Encoding Ascii",
+        "Set-Content \"$dir\\stop-v2raya-git.ps1\" -Value 'sudo Stop-Process -Name v2raya* -ErrorAction Ignore -Force' -Encoding Ascii"
+    ],
     "uninstaller": {
         "script": [
             "info '[Portable Mode]: Backing up user data...'",
@@ -97,9 +101,11 @@
         [
             "v2rayaWin-git.exe",
             "v2rayaWin-git"
-        ]
+        ],
+        "start-v2raya-git.ps1",
+        "stop-v2raya-git.ps1"
     ],
     "env_set": {
-        "V2RAYA_V2RAY_BIN": "$env:SCOOP\\apps\\v2ray\\current\\v2ray.exe"
+        "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\current\\v2ray.exe"
     }
 }
