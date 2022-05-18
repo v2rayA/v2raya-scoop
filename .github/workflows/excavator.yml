@@ -22,12 +22,12 @@ jobs:
           $MANIFESTS_LOCATION = Join-Path $BUCKET_ROOT 'bucket'
           $_BRANCH = 'main'
 
-          Write-Log 'Installing scoop'
+          Write-Host 'Installing scoop'
           $f = Join-Path $env:USERPROFILE 'install.ps1'
           Invoke-WebRequest 'https://raw.githubusercontent.com/ScoopInstaller/Install/master/install.ps1' -UseBasicParsing -OutFile $f
           & $f -RunAsAdmin
 
-          Write-Log 'Importing all modules'
+          Write-Host 'Importing all modules'
           # Load all scoop's modules.
           # Dot sourcing needs to be done on highest scope possible to propagate into lower scopes
           Get-ChildItem (Join-Path $env:SCOOP_HOME 'lib') '*.ps1' | ForEach-Object { . $_.FullName }
@@ -43,4 +43,4 @@ jobs:
           $env:SCOOP_GH_TOKEN = $env:GITHUB_TOKEN
 
           & (Join-Path $BINARIES_FOLDER 'auto-pr.ps1') @params
-          Write-Log 'Scheduled finished'
+          Write-Host 'Scheduled finished'
