@@ -21,6 +21,8 @@ jobs:
           $BINARIES_FOLDER = Join-Path $env:SCOOP_HOME 'bin'
           $MANIFESTS_LOCATION = Join-Path $BUCKET_ROOT 'bucket'
           $_BRANCH = 'main'
+          $email = '41898282+github-actions[bot]@users.noreply.github.com'
+          $user = 'github-actions[bot]'
 
           Write-Host 'Installing scoop'
           $f = Join-Path $env:USERPROFILE 'install.ps1'
