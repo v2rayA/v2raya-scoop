@@ -3,6 +3,10 @@ on:
   schedule:
     # run every 4 hours
     - cron: "20 */4 * * *"
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
 name: Excavator
 jobs:
   excavate:
