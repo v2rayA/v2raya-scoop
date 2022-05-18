@@ -18,8 +18,9 @@ jobs:
       run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          New-Item -Type Directory -Path \"D:/scoop/"\
-          $env:SCOOP = D:/scoop/
+          New-Item -Type Directory -Path "D:/scoop/"
+          $env:SCOOP="D:/scoop/"
+          $env:SCOOP_HOME="D:/scoop/apps/scoop/current/"
           Set-ExecutionPolicy RemoteSigned -Scope CurrentUser; iwr get.scoop.sh -outfile 'install.ps1'; .\install.ps1 -RunAsAdmin
           pwsh -c ./bin/checkver.ps1 -Update
           git commit -a -m "update"
