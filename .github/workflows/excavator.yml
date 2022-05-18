@@ -13,6 +13,6 @@ jobs:
     - name: Excavate
       uses: ScoopInstaller/GithubActions@main
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         SKIP_UPDATED: '1'
         THROW_ERROR: '0'
