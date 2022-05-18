@@ -22,8 +22,8 @@ jobs:
           $env:SCOOP="D:/scoop/"
           $env:SCOOP_HOME="D:/scoop/apps/scoop/current/"
           Set-ExecutionPolicy RemoteSigned -Scope CurrentUser; iwr get.scoop.sh -outfile 'install.ps1'; .\install.ps1 -RunAsAdmin
-          pwsh -c ./bin/checkver.ps1 -Update
-          git commit -a -m "update"
+          pwsh -c './bin/checkver.ps1 -Update'
+          Start-Process "git" -Args "commit -a -m 'update'" -ErrorAction Ignore
     - name: Push
       uses: ad-m/github-push-action@master
       with:
