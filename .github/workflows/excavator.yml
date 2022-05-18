@@ -44,10 +44,3 @@ jobs:
 
           & (Join-Path $BINARIES_FOLDER 'auto-pr.ps1') @params
           Write-Log 'Scheduled finished'
-
-      - name: Push
-        uses: ad-m/github-push-action@master
-        with:
-          github_url: https://github.com/v2rayA/v2raya-scoop/
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
