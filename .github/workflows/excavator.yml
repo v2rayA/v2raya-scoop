@@ -27,6 +27,12 @@ jobs:
           $_BRANCH = 'main'
           $email = '41898282+github-actions[bot]@users.noreply.github.com'
           $user = 'github-actions[bot]'
+          $rem = "https://${env:GITHUB_ACTOR}:$env:GITHUB_TOKEN@github.com/$env:GITHUB_REPOSITORY.git"
+
+          Write-Host "Config git"
+          git config --global user.name $user
+          git config --global user.email $email
+          git remote 'set-url' --push origin $rem
 
           Write-Host 'Installing scoop'
           $f = Join-Path $env:USERPROFILE 'install.ps1'
