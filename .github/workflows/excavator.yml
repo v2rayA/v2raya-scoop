@@ -1,8 +1,8 @@
 on:
   workflow_dispatch:
   schedule:
-    # run every 4 hours
-    - cron: '20 */4 * * *'
+    # run every 8 hours
+    - cron: '20 */8 * * *'
 name: Excavator
 jobs:
   excavate:
@@ -10,9 +10,18 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@main
+    - uses: Amadevus/pwsh-script@v2.0.1
     - name: Excavate
-      uses: ScoopInstaller/GithubActions@main
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SKIP_UPDATED: '1'
-        SCOOP_BRANCH: main
+      run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          pwsh -c "Set-ExecutionPolicy RemoteSigned -Scope CurrentUser; Invoke-WebRequest get.scoop.sh | Invoke-Expression"
+          Set-Location $env:UserProfile/work/v2raya-scoop/v2raya-scoop/
+          pwsh -c ./bin/checkver.ps1 -Update
+          git commit -a -m "update"
+    - name: Push
+      uses: ad-m/github-push-action@master
+      with:
+          github_url: https://github.com/v2rayA/v2raya-scoop/
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
