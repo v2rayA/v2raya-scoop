@@ -8,7 +8,7 @@ on:
     - cron: "20 */4 * * *"
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 name: Excavator
 jobs:
   excavate:
