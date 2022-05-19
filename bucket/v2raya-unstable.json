@@ -14,19 +14,19 @@
     "architecture": {
         "64bit": {
             "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/2345706918/v2raya_windows_x64_unstable-20220518.r1127.a6403bf.exe.zip",
-            "hash": "d71f0749ecf9d33628f34da151357475012ab4bdf1b9948d255aa171291a5133"
+            "hash": "d71f0749ecf9d33628f34da151357475012ab4bdf1b9948d255aa171291a5133",
+            "pre_install": [
+                "Rename-Item \"$dir\\v2raya_windows_x64_unstable-$version.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force",
+                "info '[Portable Mode]: Copying user data...'",
+                "if (Test-Path \"$persist_dir\\*\") {",
+                "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
+                "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
+                "}",
+                "Set-Content \"$dir\\start-v2raya-unstable.ps1\" -Value 'Start-Process -FilePath \"$(scoop prefix v2raya-unstable)\\v2rayaWin-unstable.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya-unstable.log\") -WorkingDirectory \"$env:TEMP\" -WindowStyle Hidden' -Encoding Ascii",
+                "Set-Content \"$dir\\stop-v2raya-unstable.ps1\" -Value 'Stop-Process -Name v2rayawin-unstable -ErrorAction Ignore -Force' -Encoding Ascii"
+            ]
         }
     },
-    "pre_install": [
-        "Rename-Item \"$dir\\v2raya_windows_x64_unstable-20220518.r1127.a6403bf.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force",
-        "info '[Portable Mode]: Copying user data...'",
-        "if (Test-Path \"$persist_dir\\*\") {",
-        "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
-        "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
-        "}",
-        "Set-Content \"$dir\\start-v2raya-unstable.ps1\" -Value 'Start-Process -FilePath \"$(scoop prefix v2raya-unstable)\\v2rayaWin-unstable.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya-unstable.log\") -WorkingDirectory \"$env:TEMP\" -WindowStyle Hidden' -Encoding Ascii",
-        "Set-Content \"$dir\\stop-v2raya-unstable.ps1\" -Value 'Stop-Process -Name v2rayawin-unstable -ErrorAction Ignore -Force' -Encoding Ascii"
-    ],
     "uninstaller": {
         "script": [
             "info '[Portable Mode]: Backing up user data...'",
