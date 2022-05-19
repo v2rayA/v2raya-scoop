@@ -1,3 +1,6 @@
+# defaults:
+#   run:
+    # working-directory: v2raya-scoop
 on:
   workflow_dispatch:
   schedule:
@@ -6,7 +9,6 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
 name: Excavator
 jobs:
   excavate:
