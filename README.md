@@ -33,8 +33,8 @@ scoop install v2ray-rules-dat
 ## How to use
 
 -   Run `v2raya` or `v2rayaWin --lite` to start v2rayA.
--   Run `start-v2raya.ps1` to start v2rayA in the background.
--   Run `stop-v2raya.ps1` to stop v2rayA.
+-   Run `start-v2raya` to start v2rayA in the background.
+-   Run `stop-v2raya` to stop v2rayA.
 
 `v2raya` command has been shimed by Scoop to run v2rayA with `--lite` arg, `v2rayawin` command is the origin v2rayA.
 
