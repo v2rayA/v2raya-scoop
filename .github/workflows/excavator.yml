@@ -4,29 +4,57 @@
 on:
   workflow_dispatch:
   schedule:
-    # run every 8 hours
-    - cron: '20 */8 * * *'
+    # run every 4 hours
+    - cron: "20 */4 * * *"
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 name: Excavator
 jobs:
   excavate:
     name: Excavate
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@main
-    - uses: Amadevus/pwsh-script@v2.0.1
-    - name: Excavate
-      run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          New-Item -Type Directory -Path "D:/scoop/"
-          $env:SCOOP="D:/scoop/"
-          $env:SCOOP_HOME="D:/scoop/apps/scoop/current/"
-          Set-ExecutionPolicy RemoteSigned -Scope CurrentUser; iwr get.scoop.sh -outfile 'install.ps1'; .\install.ps1 -RunAsAdmin
-          pwsh -c './bin/checkver.ps1 -Update'
-          Start-Process "git" -Args "commit -a -m 'update'" -ErrorAction Ignore
-    - name: Push
-      uses: ad-m/github-push-action@master
-      with:
-          # github_url: https://github.com/v2rayA/v2raya-scoop/
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+      - uses: actions/checkout@main
+      - name: Excavate
+        run: |
+          $env:SCOOP = Join-Path $env:USERPROFILE 'SCOOP'
+          $env:SCOOP_HOME = Join-Path $env:SCOOP 'apps\scoop\current'
+          $env:SCOOP_GLOBAL = Join-Path $env:SystemDrive 'SCOOP'
+          $env:SCOOP_DEBUG = 1
+          $REPOSITORY = $env:GITHUB_REPOSITORY
+          $BUCKET_ROOT = $env:GITHUB_WORKSPACE
+          $BINARIES_FOLDER = Join-Path $env:SCOOP_HOME 'bin'
+          $MANIFESTS_LOCATION = Join-Path $BUCKET_ROOT 'bucket'
+          $_BRANCH = 'main'
+          $email = '41898282+github-actions[bot]@users.noreply.github.com'
+          $user = 'github-actions[bot]'
+          $rem = "https://${env:GITHUB_ACTOR}:$env:GITHUB_TOKEN@github.com/$env:GITHUB_REPOSITORY.git"
+
+          Write-Host "Config git"
+          git config --global user.name $user
+          git config --global user.email $email
+          git remote 'set-url' --push origin $rem
+
+          Write-Host 'Installing scoop'
+          $f = Join-Path $env:USERPROFILE 'install.ps1'
+          Invoke-WebRequest 'https://raw.githubusercontent.com/ScoopInstaller/Install/master/install.ps1' -UseBasicParsing -OutFile $f
+          & $f -RunAsAdmin
+
+          Write-Host 'Importing all modules'
+          # Load all scoop's modules.
+          # Dot sourcing needs to be done on highest scope possible to propagate into lower scopes
+          Get-ChildItem (Join-Path $env:SCOOP_HOME 'lib') '*.ps1' | ForEach-Object { . $_.FullName }
+
+          $params = @{
+              'Dir'          = $MANIFESTS_LOCATION
+              'Upstream'     = "${REPOSITORY}:${_BRANCH}"
+              'OriginBranch' = $_BRANCH
+              'Push'         = $true
+              'SkipUpdated'  = ($env:SKIP_UPDATED -eq '1')
+          }
+
+          $env:SCOOP_GH_TOKEN = $env:GITHUB_TOKEN
+
+          & (Join-Path $BINARIES_FOLDER 'auto-pr.ps1') @params
+          Write-Host 'Scheduled finished'

@@ -1,5 +1,5 @@
 {
-    "version": "0.2022.05.18.a6403b",
+    "version": "20220518.a6403bf",
     "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -110,8 +110,8 @@
     },
     "checkver": {
         "url": "https://github.com/v2rayA/v2rayA/commits/master.atom",
-        "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>(?<short>[0-9a-f]{6})[0-9a-f]{34})",
-        "replace": "0.${1}.${2}.${3}.${short}"
+        "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>(?<short>[0-9a-f]{7})[0-9a-f]{33})",
+        "replace": "${1}${2}${3}.${short}"
     },
     "autoupdate": {
         "url": "https://github.com/v2rayA/v2rayA/archive/$matchSha.zip",
