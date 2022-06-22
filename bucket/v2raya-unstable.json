@@ -1,5 +1,5 @@
 {
-    "version": "20220620.r1146.82e4004",
+    "version": "20220622.r1147.4e646ea",
     "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -13,8 +13,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/2529347340/v2raya_windows_x64_unstable-20220620.r1146.82e4004.exe.zip",
-            "hash": "1c8f6c2941fdc81b452add1a53f777636d2ee7b4ba17144079605dddd49b9687",
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/2543251642/v2raya_windows_x64_unstable-20220622.r1147.4e646ea.exe.zip",
+            "hash": "82964c3dbf877ff346b71f576fa5cf338824ba2de1e3fcc0943c8e759a7a4340",
             "pre_install": [
                 "Rename-Item \"$dir\\v2raya_windows_x64_unstable-$version.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force",
                 "info '[Portable Mode]: Copying user data...'",
