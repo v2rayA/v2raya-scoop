@@ -26,11 +26,12 @@
             "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
             "}",
             "Set-Content \"$dir\\start-v2raya.ps1\" -Value 'Start-Process -FilePath \"$(scoop prefix v2raya)\\v2rayaWin.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya.log\") -WorkingDirectory \"$env:TEMP\" -WindowStyle Hidden' -Encoding Ascii",
-            "Set-Content \"$dir\\stop-v2raya.ps1\" -Value 'Stop-Process -Name v2rayawin -ErrorAction Ignore -Force' -Encoding Ascii"
+            "Set-Content \"$dir\\stop-v2raya.ps1\" -Value 'Stop-Process -Name v2rayawin -ErrorAction Ignore' -Encoding Ascii"
         ]
     },
     "uninstaller": {
         "script": [
+            "stop-v2raya",
             "info '[Portable Mode]: Backing up user data...'",
             "if (Test-Path \"$env:UserProfile\\.config\\v2raya\\*\") {",
             "    ensure \"$persist_dir\" | Out-Null",
