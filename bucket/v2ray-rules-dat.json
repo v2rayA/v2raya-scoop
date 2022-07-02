@@ -34,7 +34,8 @@
         ]
     },
     "env_set": {
-        "V2RAY_LOCATION_ASSET": "$(scoop prefix v2ray)"
+        "V2RAY_LOCATION_ASSET": "$(scoop prefix v2ray)",
+        "V2RAYA_V2RAY_ASSETSDIR": "$(scoop prefix v2ray)"
     },
     "checkver": "github",
     "autoupdate": {
