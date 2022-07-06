@@ -1,5 +1,5 @@
 {
-    "version": "20220705.bd281c6",
+    "version": "20220706.309e1e2",
     "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -19,9 +19,9 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/v2rayA/v2rayA/archive/bd281c6d2d7fae2fcf89ea5bb65d584208435233.zip",
-            "hash": "ecb85331d8bb81f7bfa9b51e3648311fed5e88e8ffda72af38cd11a80cd49fe9",
-            "extract_dir": "v2rayA-bd281c6d2d7fae2fcf89ea5bb65d584208435233"
+            "url": "https://github.com/v2rayA/v2rayA/archive/309e1e24ba863e9c19bb33e6dac5dca98708f265.zip",
+            "hash": "f6393f9294b55ee0659edde847c03e2e48fe9e7cf7c79e90fec25378e44bc092",
+            "extract_dir": "v2rayA-309e1e24ba863e9c19bb33e6dac5dca98708f265"
         }
     },
     "pre_install": [
