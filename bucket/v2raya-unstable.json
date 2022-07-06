@@ -23,7 +23,7 @@
                 "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
                 "}",
                 "Set-Content \"$dir\\start-v2raya-unstable.ps1\" -Value 'Start-Process -FilePath \"$(scoop prefix v2raya-unstable)\\v2rayaWin-unstable.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya-unstable.log\") -WorkingDirectory \"$env:TEMP\" -WindowStyle Hidden' -Encoding Ascii",
-                "Set-Content \"$dir\\stop-v2raya-unstable.ps1\" -Value 'Stop-Process -Name v2rayawin-unstable -ErrorAction Ignore' -Encoding Ascii"
+                "Set-Content \"$dir\\stop-v2raya-unstable.ps1\" -Value 'taskkill.exe /IM v2rayawin-unstable.exe' -Encoding Ascii"
             ]
         }
     },

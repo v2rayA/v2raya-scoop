@@ -26,7 +26,7 @@
             "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
             "}",
             "Set-Content \"$dir\\start-v2raya.ps1\" -Value 'Start-Process -FilePath \"$(scoop prefix v2raya)\\v2rayaWin.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya.log\") -WorkingDirectory \"$env:TEMP\" -WindowStyle Hidden' -Encoding Ascii",
-            "Set-Content \"$dir\\stop-v2raya.ps1\" -Value 'Stop-Process -Name v2rayawin -ErrorAction Ignore' -Encoding Ascii"
+            "Set-Content \"$dir\\stop-v2raya.ps1\" -Value 'taskkill.exe /IM v2rayawin.exe' -Encoding Ascii"
         ]
     },
     "uninstaller": {

@@ -77,7 +77,7 @@
             "go build -ldflags \"-X github.com/v2rayA/v2rayA/conf.Version=$versions -s -w\" -o \"$dir/v2rayaWin-git.exe\"",
             "Pop-Location",
             "Set-Content \"$dir\\start-v2raya-git.ps1\" -Value 'Start-Process -FilePath \"$(scoop prefix v2raya-git)\\v2rayaWin-git.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya-git.log\") -WorkingDirectory \"$env:TEMP\" -WindowStyle Hidden' -Encoding Ascii",
-            "Set-Content \"$dir\\stop-v2raya-git.ps1\" -Value 'Stop-Process -Name v2rayawin-git -ErrorAction Ignore' -Encoding Ascii"
+            "Set-Content \"$dir\\stop-v2raya-git.ps1\" -Value 'taskkill.exe /IM v2rayawin-git.exe' -Encoding Ascii"
         ]
     },
     "uninstaller": {
