@@ -33,6 +33,9 @@
     ],
     "installer": {
         "script": [
+            "$env:GOPROXY = \"https://proxy.golang.com.cn,direct\"",
+            "Write-Host \"If you cannot build Web Control Panel, try to set yarn's mirror to taobao by these command:",
+            "Write-Host \"yarn config set registry https://npmmirror.com/\" ",
             "Push-Location $dir",
             "# zip web files",
             "Function Gzip-File([ValidateScript({Test-Path $_})][string]$File){",
