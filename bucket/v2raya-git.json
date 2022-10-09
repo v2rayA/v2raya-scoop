@@ -25,11 +25,14 @@
         }
     },
     "pre_install": [
-        "info '[Portable Mode]: Copying user data...'",
-        "if (Test-Path \"$persist_dir\\*\") {",
-        "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
-        "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
-        "}"
+        "if (Test-Path \"$env:UserProfile\\.config\\v2raya\") {",
+        "    info '[Persistent data]: Copying user data...'",
+        "    ensure \"$persist_dir\" | Out-Null",
+        "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\\" -ErrorAction SilentlyContinue -Recurse -Force",
+        "    Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction SilentlyContinue -Recurse -Force",
+        "}",
+        "ensure \"$persist_dir\" | Out-Null",
+        "New-Item \"$env:UserProfile\\.config\\v2raya\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
     ],
     "installer": {
         "script": [
@@ -83,16 +86,10 @@
             "Set-Content \"$dir\\stop-v2raya-git.ps1\" -Value 'taskkill.exe /IM v2rayawin-git.exe' -Encoding Ascii"
         ]
     },
-    "uninstaller": {
-        "script": [
-            "info '[Portable Mode]: Backing up user data...'",
-            "if (Test-Path \"$env:UserProfile\\.config\\v2raya\\*\") {",
-            "    ensure \"$persist_dir\" | Out-Null",
-            "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\\" -Recurse -Force | Out-Null",
-            "}",
-            "#Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
-        ]
-    },
+    "pre_uninstall": [
+        "stop-v2raya-git",
+        "Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
+    ],
     "bin": [
         [
             "v2rayaWin-git.exe",
@@ -115,7 +112,11 @@
         "replace": "${1}${2}${3}.${short}"
     },
     "autoupdate": {
-        "url": "https://github.com/v2rayA/v2rayA/archive/$matchSha.zip",
-        "extract_dir": "v2rayA-$matchSha"
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/v2rayA/v2rayA/archive/$matchSha.zip",
+                "extract_dir": "v2rayA-$matchSha"
+            }
+        }
     }
 }
