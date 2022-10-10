@@ -32,7 +32,7 @@
             "Start-Process \"$dir\\unins000.exe\" -ArgumentList @('/VERYSILENT', '/NORESTART') -Wait -Verb RunAs",
             "if ($global) { $startmenu = 'CommonStartMenu' } else { $startmenu = 'StartMenu' }",
             "$scoop_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath($startmenu), 'Programs', 'Scoop Apps')",
-            "Remove-Item \"$scoop_startmenu_folder\\v2rayA\" -ErrorAction SilentlyContinue -Force -Recurse"
+            "Remove-Item \"$scoop_startmenu_folder\\v2rayA\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
         ]
     },
     "bin": "v2rayA-service.exe",
