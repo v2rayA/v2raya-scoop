@@ -64,6 +64,7 @@
             "}",
             "# Disable CGO",
             "${env:CGO_ENABLED} = \"0\"",
+            "${env:NODE_OPTIONS} = \"--openssl-legacy-provider\"",
             "# Set AMD64 CPU Version",
             "# See https://go.dev/doc/go1.18 for more informations",
             "${env:GOAMD64} = \"v2\"",
