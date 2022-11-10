@@ -1,5 +1,5 @@
 {
-    "version": "20221106.r1235.1b3d318",
+    "version": "20221110.r1241.6b70de7",
     "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -13,8 +13,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3404750263/v2raya_windows_x64_unstable-20221106.r1235.1b3d318.exe.zip",
-            "hash": "9fc360a57eae3036aaea0f5c6b0cbff6dfe739992c70de91e7d79d3b09ccccaf",
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3433351139/v2raya_windows_x64_unstable-20221110.r1241.6b70de7.exe.zip",
+            "hash": "34baf25365a4131965e19b72e800e533c991e44723776aac4c69c5afc0cec648",
             "pre_install": [
                 "Rename-Item \"$dir\\v2raya_windows_x64_unstable-$version.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force",
                 "if (Test-Path \"$env:UserProfile\\.config\\v2raya\") {",
