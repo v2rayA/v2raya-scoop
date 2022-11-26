@@ -1,5 +1,5 @@
 {
-    "version": "20221120.r1251.40bebe6",
+    "version": "20221126.r1253.e205ebd",
     "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -8,8 +8,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3507497798/installer_windows_inno_x64_unstable-20221120.r1251.40bebe6.exe.zip",
-            "hash": "86b3e91b211496a6776afedb32aff51ceba7cfd87e8fea06e22e305b53d0314e",
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3551770408/installer_windows_inno_x64_unstable-20221126.r1253.e205ebd.exe.zip",
+            "hash": "7b4de52da4bf0e6324f30606de77025804d70250cbcb5590c0d8a8abfcfea325",
             "pre_install": "Rename-Item \"$dir\\installer_windows_inno_x64_unstable-$version.exe\" 'setup.exe' -ErrorAction 'SilentlyContinue' -Force"
         }
     },
