@@ -31,8 +31,8 @@
 #### Using the installer (recommended)
 
 ```ps1
-> scoop install v2raya-np # release version (recommended)
-> #scoop install v2raya-unstable-np # pre-release version (unstable)
+> scoop install v2raya-np # stable version (recommended)
+> #scoop install v2raya-unstable-np # unstable version
 ```
 
 #### Using the binary
