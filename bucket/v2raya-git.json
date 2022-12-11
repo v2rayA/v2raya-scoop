@@ -1,6 +1,6 @@
 {
-    "version": "20221004.11aa2b0",
-    "description": "v2rayA(source code for compilation). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
+    "version": "20221210.1df0a60",
+    "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
         "identifier": "AGPL-3.0-only",
@@ -19,9 +19,9 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/v2rayA/v2rayA/archive/11aa2b0a982989983fd086510f8fea864ed92deb.zip",
-            "hash": "ac4384f7e12408f6734b38069fef6aa0e124c2050660e1570a08715e3b1b7a86",
-            "extract_dir": "v2rayA-11aa2b0a982989983fd086510f8fea864ed92deb"
+            "url": "https://github.com/v2rayA/v2rayA/archive/1df0a60eea1005b7262c57431a397097c3484c66.zip",
+            "hash": "80b4ac4fc87611bd0de4270cf68e644d65bed8a905cec423ba0697abf40777ce",
+            "extract_dir": "v2rayA-1df0a60eea1005b7262c57431a397097c3484c66"
         }
     },
     "pre_install": [
@@ -64,6 +64,7 @@
             "}",
             "# Disable CGO",
             "${env:CGO_ENABLED} = \"0\"",
+            "${env:NODE_OPTIONS} = \"--openssl-legacy-provider\"",
             "# Set AMD64 CPU Version",
             "# See https://go.dev/doc/go1.18 for more informations",
             "${env:GOAMD64} = \"v2\"",
