@@ -13,9 +13,15 @@
         }
     },
     "pre_install": [
-        "foreach ($file in @('boltv4.db', 'config.json')) {",
-        "    if (Test-Path \"$persist_dir\\$file\") { Copy-Item \"$persist_dir\\$file\" \"$dir\\\" | Out-Null }",
-        "}"
+        "#Create placeholder files",
+        "function CreateFile([String] $file, [String] $content = $null) {",
+        "    if(!(Test-Path \"$persist_dir\\$file\")) {",
+        "        info \"Create placeholder for v2raya-np: $file\"",
+        "        New-Item -Force -Path \"$persist_dir\\$file\" -ItemType file -Value $content | Out-Null",
+        "    }",
+        "}",
+        "CreateFile 'boltv4.db'",
+        "CreateFile 'config.json' '{}'"
     ],
     "installer": {
         "script": [
@@ -32,13 +38,14 @@
         "Move-Item \"$v2raya_startmenu_folder\" \"$scoop_startmenu_folder\\\" -Force -ErrorAction 'SilentlyContinue'"
     ],
     "pre_uninstall": [
-        "foreach ($file in @('boltv4.db', 'config.json')) {",
-        "    if (Test-Path \"$dir\\$file\") { Copy-Item \"$dir\\$file\" \"$persist_dir\\\" | Out-Null }",
-        "}",
         "Start-Process \"$dir\\Uninstall.exe\" -ArgumentList @('/S') -Wait -Verb RunAs",
         "if ($global) { $startmenu = 'CommonStartMenu' } else { $startmenu = 'StartMenu' }",
         "$scoop_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath($startmenu), 'Programs', 'Scoop Apps')",
         "Remove-Item \"$scoop_startmenu_folder\\v2rayA\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+    ],
+    "persist": [
+        "boltv4.db",
+        "config.json"
     ],
     "checkver": {
         "url": "https://api.github.com/repos/v2rayA/v2raya/releases/latest",
