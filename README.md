@@ -4,7 +4,8 @@
 
 ## How to install
 
-### Install Scoop
+<details>
+  <summary>Install Scoop</summary>
 
 1. Install [Git for Windows](https://github.com/git-for-windows/git/releases/latest). CN users can download from [here](https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/LatestRelease/).
 2. Install [PowerShell Core](https://aka.ms/PowerShell-Release?tag=stable). CN users can download from [here](https://mirrors.tuna.tsinghua.edu.cn/github-release/PowerShell/PowerShell/LatestRelease/).
@@ -15,6 +16,8 @@
     > Set-ExecutionPolicy RemoteSigned -Scope CurrentUser # Optional: Needed to run a remote script the first time
     > irm get.scoop.sh | iex
     ```
+
+</details>
 
 ### Add Bucket
 
