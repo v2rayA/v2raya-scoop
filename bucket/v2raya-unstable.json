@@ -1,5 +1,5 @@
 {
-    "version": "20221004.r1225.11aa2b0",
+    "version": "20221210.r1266.1df0a60",
     "description": "v2rayA(unstable version). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -13,8 +13,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3179664672/v2raya_windows_x64_unstable-20221004.r1225.11aa2b0.exe.zip",
-            "hash": "0d9e3faadaf1fbd2ff4c01a49ed6bb30769e9d5970da62af470bdc5241cb4b23",
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3664563122/v2raya_windows_x64_unstable-20221210.r1266.1df0a60.exe.zip",
+            "hash": "0f08a13a4568a41ea234e0c1e5f15aaed9bfda1371d99cff8f8c8d08592a1d48",
             "pre_install": [
                 "Rename-Item \"$dir\\v2raya_windows_x64_unstable-$version.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force",
                 "if (Test-Path \"$env:UserProfile\\.config\\v2raya\") {",
