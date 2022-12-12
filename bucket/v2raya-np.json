@@ -1,0 +1,49 @@
+{
+    "version": "2.0.0",
+    "description": "v2rayA(stable version, inno installer). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
+    "homepage": "https://github.com/v2rayA/v2raya",
+    "license": {
+        "identifier": "AGPL-3.0-only",
+        "url": "https://github.com/v2rayA/v2rayA/raw/master/LICENSE"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/v2rayA/v2rayA/releases/download/v2.0.0/installer_windows_inno_x64_2.0.0.exe#/v2rayA.exe",
+            "hash": "6322392c975b6de058d8acd776126375fdad3f4ca5e92b22c7bed6d0d8ea4a19"
+        }
+    },
+    "installer": {
+        "script": [
+            "$args = @('/VERYSILENT', '/NORESTART', \"/DIR=`\"$dir`\"\")",
+            "Start-Process \"$dir\\v2rayA.exe\" -ArgumentList $args -Wait -Verb RunAs"
+        ]
+    },
+    "post_install": [
+        "#Remove-Item \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\v2rayA\" -Force -Recurse -ErrorAction 'SilentlyContinue'",
+        "Remove-Item \"$dir\\v2rayA.exe\" -Force -ErrorAction 'SilentlyContinue'",
+        "$v2raya_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath('CommonStartMenu'), 'Programs', 'v2rayA')",
+        "if ($global) { $startmenu = 'CommonStartMenu' } else { $startmenu = 'StartMenu' }",
+        "$scoop_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath($startmenu), 'Programs', 'Scoop Apps')",
+        "Move-Item \"$v2raya_startmenu_folder\" \"$scoop_startmenu_folder\\\" -ErrorAction 'SilentlyContinue' -Force"
+    ],
+    "uninstaller": {
+        "script": [
+            "Start-Process \"$dir\\unins000.exe\" -ArgumentList @('/VERYSILENT', '/NORESTART') -Wait -Verb RunAs",
+            "if ($global) { $startmenu = 'CommonStartMenu' } else { $startmenu = 'StartMenu' }",
+            "$scoop_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath($startmenu), 'Programs', 'Scoop Apps')",
+            "Remove-Item \"$scoop_startmenu_folder\\v2rayA\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+        ]
+    },
+    "bin": "v2rayA-service.exe",
+    "checkver": {
+        "url": "https://api.github.com/repos/v2rayA/v2raya/releases/latest",
+        "regex": "installer_windows_inno_x64_([\\d.]+)\\.exe"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/v2rayA/v2rayA/releases/download/v$version/installer_windows_inno_x64_$version.exe#/v2rayA.exe"
+            }
+        }
+    }
+}

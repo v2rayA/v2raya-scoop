@@ -4,7 +4,7 @@
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
         "identifier": "AGPL-3.0-only",
-        "url": "https://github.com/v2rayA/v2rayA/blob/master/LICENSE"
+        "url": "https://github.com/v2rayA/v2rayA/raw/master/LICENSE"
     },
     "notes": "If you want to run both 'v2raya' and 'v2raya-unstable', follow the official docs to change the ports.",
     "depends": "v2ray",

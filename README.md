@@ -4,33 +4,51 @@
 
 ## How to install
 
-It's suggested to use `scoop` in latest [PowerShell Core](https://aka.ms/PowerShell-Release?tag=stable)
+<details>
+  <summary>Install Scoop</summary>
 
-Add bucket
+1. Install [Git for Windows](https://github.com/git-for-windows/git/releases/latest). CN users can download from [here](https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/LatestRelease/).
+2. Install [PowerShell Core](https://aka.ms/PowerShell-Release?tag=stable). CN users can download from [here](https://mirrors.tuna.tsinghua.edu.cn/github-release/PowerShell/PowerShell/LatestRelease/).
+3. (OPTIONAL) Install [Windows Terminal](https://github.com/microsoft/terminal/releases/latest).
+4. Install [Scoop](https://scoop.sh).
+
+    ```powershell
+    > Set-ExecutionPolicy RemoteSigned -Scope CurrentUser # Optional: Needed to run a remote script the first time
+    > irm get.scoop.sh | iex
+    ```
+
+</details>
+
+### Add Bucket
 
 ```ps1
-scoop bucket add v2raya https://github.com/v2rayA/v2raya-scoop
+> scoop bucket add v2raya https://github.com/v2rayA/v2raya-scoop # Add bucket
+> scoop update # Update bucket
 ```
 
-Update buckets
+### Install v2rayA
+
+#### Using the installer (recommended)
 
 ```ps1
-scoop update
+> scoop install v2raya-np # stable version (recommended)
+> #scoop install v2raya-unstable-np # unstable version
 ```
 
-Install v2rayA
+#### Using the binary
 
 ```ps1
-scoop install v2raya
-```
-
-Install V2Ray rules dat (optional)
-
-```ps1
-scoop install v2ray-rules-dat
+> scoop install v2raya
+> scoop install v2ray-rules-dat # Optional: Install V2Ray rules dat
 ```
 
 ## How to use
+
+### Using the installer (recommended)
+
+After installing v2rayA through the installer, v2rayA will run as a service. By default, it will start automatically. You can also manage the start and stop of v2rayA in the "Services" tab in the task manager. You can open the admin page by running the desktop shortcut or by visiting <http://127.0.0.1:2017> directly.
+
+### Using the binary
 
 -   Run `v2raya` or `v2rayaWin --lite` to start v2rayA.
 -   Run `start-v2raya` to start v2rayA in the background.
@@ -43,5 +61,5 @@ Env `V2RAYA_V2RAY_BIN` will be set to `$(scoop prefix v2ray)\\v2ray.exe`.
 You can use `⊞ + R` to open a Runs window, and run `v2raya` command in it. If you need to run v2rayA in background, you can open a PowerShell, then run:
 
 ```ps1
-Start-Process v2raya.exe -WindowStyle hidden
+> Start-Process v2raya.exe -WindowStyle hidden
 ```
