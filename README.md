@@ -39,7 +39,7 @@
 
 ```ps1
 > scoop install v2raya
-> scoop install v2ray-rules-dat # Optional: Install V2Ray rules dat
+> scoop install v2ray-rules-dat # install V2Ray rules dat(optional)
 ```
 
 ## How to use
@@ -50,9 +50,9 @@ After installing v2rayA through the installer, v2rayA will run as a service. By 
 
 ### Using the binary
 
--   Run `v2raya` or `v2rayaWin --lite` to start v2rayA.
--   Run `start-v2raya` to start v2rayA in the background.
--   Run `stop-v2raya` to stop v2rayA.
+- Run `v2raya` or `v2rayaWin --lite` to start v2rayA.
+- Run `start-v2raya` to start v2rayA in the background.
+- Run `stop-v2raya` to stop v2rayA.
 
 `v2raya` command has been shimed by Scoop to run v2rayA with `--lite` arg, `v2rayawin` command is the origin v2rayA.
 
