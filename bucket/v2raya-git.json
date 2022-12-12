@@ -1,6 +1,6 @@
 {
-    "version": "20221210.1df0a60",
-    "description": "v2rayA(source code for compilation). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
+    "version": "20221211.38afbd4",
+    "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
         "identifier": "AGPL-3.0-only",
@@ -19,9 +19,9 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/v2rayA/v2rayA/archive/1df0a60eea1005b7262c57431a397097c3484c66.zip",
-            "hash": "80b4ac4fc87611bd0de4270cf68e644d65bed8a905cec423ba0697abf40777ce",
-            "extract_dir": "v2rayA-1df0a60eea1005b7262c57431a397097c3484c66"
+            "url": "https://github.com/v2rayA/v2rayA/archive/38afbd4f03a7b1816b7da30e7c5f5f9eb167f222.zip",
+            "hash": "d50062197ddd9ea5a5863c84849d5b2391f62e8dcc41b09797eb154c579cb317",
+            "extract_dir": "v2rayA-38afbd4f03a7b1816b7da30e7c5f5f9eb167f222"
         }
     },
     "pre_install": [
