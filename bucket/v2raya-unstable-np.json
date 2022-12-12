@@ -1,6 +1,6 @@
 {
-    "version": "20221210.r1266.1df0a60",
-    "description": "v2rayA(unstable version, inno installer). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
+    "version": "20221211.r1267.38afbd4",
+    "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
         "identifier": "AGPL-3.0-only",
@@ -8,8 +8,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3664563126/installer_windows_inno_x64_unstable-20221210.r1266.1df0a60.exe.zip",
-            "hash": "f3a61f2750682ba7a1671a5e539f2073c408dbe75bc94bbc7c22eb54e8a8b8f2",
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3668713054/installer_windows_inno_x64_unstable-20221211.r1267.38afbd4.exe.zip",
+            "hash": "ecdbc7e921715789c68a4b4a4e3119f813f9adf0a9c7d7ec684f3d4ffc7870fd",
             "pre_install": "Rename-Item \"$dir\\installer_windows_inno_x64_unstable-$version.exe\" 'setup.exe' -ErrorAction 'SilentlyContinue' -Force"
         }
     },
