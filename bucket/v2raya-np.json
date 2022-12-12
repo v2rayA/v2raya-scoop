@@ -10,6 +10,10 @@
         "64bit": {
             "url": "https://github.com/v2rayA/v2rayA/releases/download/v2.0.0/installer_windows_inno_x64_2.0.0.exe#/v2rayA.exe",
             "hash": "6322392c975b6de058d8acd776126375fdad3f4ca5e92b22c7bed6d0d8ea4a19"
+        },
+        "arm64": {
+            "url": "https://github.com/v2rayA/v2rayA/releases/download/v2.0.0/installer_windows_inno_arm64_2.0.0.exe#/v2rayA.exe",
+            "hash": "60cf57f27a76a720c0ebbdb65195c467066afaa8ac9be2095b5de55f5c78337f"
         }
     },
     "installer": {
@@ -43,6 +47,9 @@
         "architecture": {
             "64bit": {
                 "url": "https://github.com/v2rayA/v2rayA/releases/download/v$version/installer_windows_inno_x64_$version.exe#/v2rayA.exe"
+            },
+            "arm64": {
+                "url": "https://github.com/v2rayA/v2rayA/releases/download/v$version/installer_windows_inno_arm64_$version.exe#/v2rayA.exe"
             }
         }
     }
