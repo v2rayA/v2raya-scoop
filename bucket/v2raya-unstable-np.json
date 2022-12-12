@@ -1,6 +1,6 @@
 {
     "version": "20221211.r1267.38afbd4",
-    "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
+    "description": "v2rayA(unstable version, inno installer). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
         "identifier": "AGPL-3.0-only",
@@ -11,6 +11,11 @@
             "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3668713054/installer_windows_inno_x64_unstable-20221211.r1267.38afbd4.exe.zip",
             "hash": "ecdbc7e921715789c68a4b4a4e3119f813f9adf0a9c7d7ec684f3d4ffc7870fd",
             "pre_install": "Rename-Item \"$dir\\installer_windows_inno_x64_unstable-$version.exe\" 'setup.exe' -ErrorAction 'SilentlyContinue' -Force"
+        },
+        "arm64": {
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3668713054/installer_windows_inno_arm64_unstable-20221211.r1267.38afbd4.exe.zip",
+            "hash": "04f017fda7cff0bf52d402fa33d1ba4e6cedca935232a6d0713062123adfbfe5",
+            "pre_install": "Rename-Item \"$dir\\installer_windows_inno_arm64_unstable-$version.exe\" 'setup.exe' -ErrorAction 'SilentlyContinue' -Force"
         }
     },
     "installer": {
@@ -44,6 +49,9 @@
         "architecture": {
             "64bit": {
                 "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/$matchRunid/installer_windows_inno_x64_unstable-$version.exe.zip"
+            },
+            "arm64": {
+                "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/$matchRunid/installer_windows_inno_arm64_unstable-$version.exe.zip"
             }
         }
     }

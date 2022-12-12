@@ -1,6 +1,6 @@
 {
     "version": "20221211.r1267.38afbd4",
-    "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
+    "description": "v2rayA(unstable version). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
         "identifier": "AGPL-3.0-only",
@@ -15,25 +15,32 @@
         "64bit": {
             "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3668713055/v2raya_windows_x64_unstable-20221211.r1267.38afbd4.exe.zip",
             "hash": "26609ac99963f38367a8446b9e20656857372fb912b63f5806f8464c11784f9f",
-            "pre_install": [
-                "Rename-Item \"$dir\\v2raya_windows_x64_unstable-$version.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force",
-                "if (Test-Path \"$env:UserProfile\\.config\\v2raya\") {",
-                "    info '[Persistent data]: Copying user data...'",
-                "    ensure \"$persist_dir\" | Out-Null",
-                "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\\" -ErrorAction SilentlyContinue -Recurse -Force",
-                "    Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction SilentlyContinue -Recurse -Force",
-                "}",
-                "ensure \"$persist_dir\" | Out-Null",
-                "New-Item \"$env:UserProfile\\.config\\v2raya\" -ItemType Junction -Target \"$persist_dir\" | Out-Null",
-                "Set-Content \"$dir\\start-v2raya-unstable.ps1\" -Value 'Start-Process -FilePath \"$(scoop prefix v2raya-unstable)\\v2rayaWin-unstable.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya-unstable.log\") -WorkingDirectory \"$env:TEMP\" -WindowStyle Hidden' -Encoding Ascii",
-                "Set-Content \"$dir\\stop-v2raya-unstable.ps1\" -Value 'taskkill.exe /IM v2rayawin-unstable.exe' -Encoding Ascii"
-            ],
-            "pre_uninstall": [
-                "stop-v2raya-unstable",
-                "Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
-            ]
+            "pre_install": "Rename-Item \"$dir\\v2raya_windows_x64_unstable-$version.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force"
+        },
+        "arm64": {
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3668713055/v2raya_windows_arm64_unstable-20221211.r1267.38afbd4.exe.zip",
+            "hash": "a291ade91a839db9fab6d2dea9770c61185701a025b9ae45ce966d61704863f9",
+            "pre_install": "Rename-Item \"$dir\\v2raya_windows_arm64_unstable-$version.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force"
         }
     },
+    "installer": {
+        "script": [
+            "if (Test-Path \"$env:UserProfile\\.config\\v2raya\") {",
+            "    info '[Persistent data]: Copying user data...'",
+            "    ensure \"$persist_dir\" | Out-Null",
+            "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\\" -ErrorAction SilentlyContinue -Recurse -Force",
+            "    Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction SilentlyContinue -Recurse -Force",
+            "}",
+            "ensure \"$persist_dir\" | Out-Null",
+            "New-Item \"$env:UserProfile\\.config\\v2raya\" -ItemType Junction -Target \"$persist_dir\" | Out-Null",
+            "Set-Content \"$dir\\start-v2raya-unstable.ps1\" -Value 'Start-Process -FilePath \"$(scoop prefix v2raya-unstable)\\v2rayaWin-unstable.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya-unstable.log\") -WorkingDirectory \"$env:TEMP\" -WindowStyle Hidden' -Encoding Ascii",
+            "Set-Content \"$dir\\stop-v2raya-unstable.ps1\" -Value 'taskkill.exe /IM v2rayawin-unstable.exe' -Encoding Ascii"
+        ]
+    },
+    "pre_uninstall": [
+        "stop-v2raya-unstable",
+        "Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
+    ],
     "bin": [
         [
             "v2rayaWin-unstable.exe",
@@ -52,13 +59,15 @@
     },
     "checkver": {
         "url": "https://scoop-apps.vercel.app/v2rayA/v2rayA",
-        "regex": "(?sm)/v2rayA/v2rayA/actions/runs/(?<runid>\\d+).*?(?<filename>v2raya_windows_x64_unstable-(?<ver>[\\w.]+)\\.exe)",
-        "replace": "${ver}"
+        "regex": "(?sm)/v2rayA/v2rayA/actions/runs/(?<runid>\\d+).*?v2raya_windows_x64_unstable-([\\w.]+)\\.exe"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/$matchRunid/$matchFilename.zip"
+                "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/$matchRunid/v2raya_windows_x64_unstable-$version.exe.zip"
+            },
+            "arm64": {
+                "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/$matchRunid/v2raya_windows_arm64_unstable-$version.exe.zip"
             }
         }
     }
