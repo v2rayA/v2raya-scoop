@@ -64,8 +64,8 @@ You can use `Win + R` to open a Runs window, and run `v2raya` command in it.
 #### Add v2raya to startup
 
 ```ps1
-reg import "$(scoop prefix v2raya)\add-startup.reg"
+> reg import "$(scoop prefix v2raya)\add-startup.reg"
 
 # remove
-reg import "$(scoop prefix v2raya)\remove-startup.reg"
+> reg import "$(scoop prefix v2raya)\remove-startup.reg"
 ```
