@@ -82,15 +82,34 @@
             "$versions = 'unstable-' + $version",
             "Set-Location -Path \"$dir/service\"",
             "go build -ldflags \"-X github.com/v2rayA/v2rayA/conf.Version=$versions -s -w\" -o \"$dir/v2rayaWin-git.exe\"",
-            "Pop-Location",
-            "Set-Content \"$dir\\start-v2raya-git.ps1\" -Value 'Start-Process -FilePath \"$(scoop prefix v2raya-git)\\v2rayaWin-git.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya-git.log\") -WorkingDirectory \"$env:TEMP\" -WindowStyle Hidden' -Encoding Ascii",
-            "Set-Content \"$dir\\stop-v2raya-git.ps1\" -Value 'taskkill.exe /IM v2rayawin-git.exe' -Encoding Ascii"
+            "Pop-Location"
         ]
     },
+    "post_install": [
+        "@('start-v2raya', 'stop-v2raya', 'reset-passwd-v2raya') | ForEach-Object {",
+        "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\"",
+        "    $content = $content.Replace(' v2raya', ' v2raya-git')",
+        "    $content = $content.Replace('v2rayaWin', 'v2rayaWin-git')",
+        "    $content | Set-Content -Path \"$dir\\$_-git.ps1\" -Encoding Ascii",
+        "}",
+        "$exepath = \"powershell -NoLogo -NoProfile -ExecutionPolicy -File $bucketsdir\\v2raya\\scripts\\v2raya\\start-v2raya-git.ps1\".Replace('\\', '\\\\')",
+        "@('add-startup', 'remove-startup') | ForEach-Object {",
+        "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.reg\"",
+        "    $content = $content.Replace('$exepath', $exepath)",
+        "    $content = $content.Replace('v2rayA', 'v2rayA-git')",
+        "    if ($global) {",
+        "       $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+        "    }",
+        "    $content | Set-Content -Path \"$dir\\$_.reg\" -Encoding Ascii",
+        "}"
+    ],
     "pre_uninstall": [
         "stop-v2raya-git",
         "Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
     ],
+    "uninstaller": {
+        "script": "if ($cmd -eq 'uninstall') { reg import \"$dir\\remove-startup.reg\" }"
+    },
     "bin": [
         [
             "v2rayaWin-git.exe",
@@ -102,7 +121,8 @@
             "v2rayaWin-git"
         ],
         "start-v2raya-git.ps1",
-        "stop-v2raya-git.ps1"
+        "stop-v2raya-git.ps1",
+        "reset-passwd-v2raya-git.ps1"
     ],
     "env_set": {
         "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe"
