@@ -34,9 +34,9 @@
         "Set-Content \"$dir\\stop-v2raya.ps1\" -Value 'taskkill.exe /F /IM v2rayawin.exe /FI \"status eq running\" | Out-Null' -Encoding Ascii"
     ],
     "post_install": [
-        "$exepath = \"powershell -NoLogo -NoProfile -ExecutionPolicy -File $bucketsdir\\meta\\scripts\\clashn\\start-clashn.ps1\".Replace('\\', '\\\\')",
+        "$exepath = \"powershell -NoLogo -NoProfile -ExecutionPolicy -File $bucketsdir\\v2raya\\scripts\\v2raya\\start-v2raya.ps1\".Replace('\\', '\\\\')",
         "'add-startup', 'remove-startup' | ForEach-Object {",
-        "    $content = Get-Content \"$bucketsdir\\tian\\scripts\\v2raya\\$_.reg\"",
+        "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.reg\"",
         "    $content = $content.Replace('$exepath', $exepath)",
         "    if ($global) {",
         "       $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
