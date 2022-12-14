@@ -1,5 +1,5 @@
 {
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "v2rayA. A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -13,12 +13,12 @@
     "notes": "Start v2rayA with Windows by running: 'reg import \"$dir\\add-startup.reg\"'.",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/v2rayA/v2rayA/releases/download/v2.0.0/v2raya_windows_x64_2.0.0.exe#/v2rayaWin.exe",
-            "hash": "216f668eaa69fdf74c7bef586c74c77a7931283ab189e38cd27737cbd96d188e"
+            "url": "https://github.com/v2rayA/v2rayA/releases/download/v2.0.1/v2raya_windows_x64_2.0.1.exe#/v2rayaWin.exe",
+            "hash": "e4941964b1c4783eeced8a74b55f1274b00fdf38367f491bc9df6d84ee8e60cb"
         },
         "arm64": {
-            "url": "https://github.com/v2rayA/v2rayA/releases/download/v2.0.0/v2raya_windows_arm64_2.0.0.exe#/v2rayaWin.exe",
-            "hash": "10f9b7f9de65aeaa363f9c3d28cff9084ead89ea5947c956550bd1d54233db2e"
+            "url": "https://github.com/v2rayA/v2rayA/releases/download/v2.0.1/v2raya_windows_arm64_2.0.1.exe#/v2rayaWin.exe",
+            "hash": "11c08ef6b0ea35fc05e925e3c1f99112355e695646602d05f1bf0c1bcbeda3a5"
         }
     },
     "pre_install": [
