@@ -29,19 +29,20 @@
         "    Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction SilentlyContinue -Recurse -Force",
         "}",
         "ensure \"$persist_dir\" | Out-Null",
-        "New-Item \"$env:UserProfile\\.config\\v2raya\" -ItemType Junction -Target \"$persist_dir\" | Out-Null",
-        "Set-Content \"$dir\\start-v2raya.ps1\" -Value 'Start-Process -FilePath \"$(scoop prefix v2raya)\\v2rayaWin.exe\" -ArgumentList @(\"--lite\", \"--log-disable-timestamp\", \"--log-file v2raya.log\") -WorkingDirectory \"$env:TEMP\" -WindowStyle Hidden' -Encoding Ascii",
-        "Set-Content \"$dir\\stop-v2raya.ps1\" -Value 'taskkill.exe /F /IM v2rayawin.exe /FI \"status eq running\" | Out-Null' -Encoding Ascii"
+        "New-Item \"$env:UserProfile\\.config\\v2raya\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
     ],
     "post_install": [
+        "@('start-v2raya', 'stop-v2raya') | ForEach-Object {",
+        "    Copy-Item \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\" \"$dir\\$_.ps1\"",
+        "}",
         "$exepath = \"powershell -NoLogo -NoProfile -ExecutionPolicy -File $bucketsdir\\v2raya\\scripts\\v2raya\\start-v2raya.ps1\".Replace('\\', '\\\\')",
-        "'add-startup', 'remove-startup' | ForEach-Object {",
+        "@('add-startup', 'remove-startup') | ForEach-Object {",
         "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.reg\"",
         "    $content = $content.Replace('$exepath', $exepath)",
         "    if ($global) {",
         "       $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
         "    }",
-        "    $content | Set-Content -Path \"$dir\\$_.reg\"",
+        "    $content | Set-Content -Path \"$dir\\$_.reg\" -Encoding Ascii",
         "}"
     ],
     "pre_uninstall": [
