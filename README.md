@@ -48,18 +48,26 @@
 
 After installing v2rayA through the installer, v2rayA will run as a service. By default, it will start automatically. You can also manage the start and stop of v2rayA in the "Services" tab in the task manager. You can open the admin page by running the desktop shortcut or by visiting <http://127.0.0.1:2017> directly.
 
+#### Reset Passwd
+
+You can use `Win + R` to open a Runs window, and run `reset-passwd-v2raya-np` command in it.
+
 ### Using the binary
 
 > - `v2raya` command has been shimed by Scoop to run v2rayA with `--lite` arg, `v2rayawin` command is the origin v2rayA.
 > - Env `V2RAYA_V2RAY_BIN` will be set to `$(scoop prefix v2ray)\\v2ray.exe`.
 
-#### Start v2rayA
+#### Start/Stop v2rayA
 
 You can use `Win + R` to open a Runs window, and run `v2raya` command in it.
 
 - Run `v2raya` or `v2rayaWin --lite` to start v2rayA.
 - Run `start-v2raya` to start v2rayA in the background.
 - Run `stop-v2raya` to stop v2rayA.
+
+#### Reset Passwd
+
+- Run `reset-passwd-v2raya` to reset the password of v2rayA.
 
 #### Add v2raya to startup
 

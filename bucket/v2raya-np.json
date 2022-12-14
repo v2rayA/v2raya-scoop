@@ -23,6 +23,9 @@
         ]
     },
     "post_install": [
+        "@('reset-passwd-v2raya-np') | ForEach-Object {",
+        "    Copy-Item \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\" \"$dir\\$_.ps1\"",
+        "}",
         "#Remove-Item \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\v2rayA\" -Force -Recurse -ErrorAction 'SilentlyContinue'",
         "Remove-Item \"$dir\\v2rayA.exe\" -Force -ErrorAction 'SilentlyContinue'",
         "$v2raya_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath('CommonStartMenu'), 'Programs', 'v2rayA')",
@@ -38,7 +41,11 @@
             "Remove-Item \"$scoop_startmenu_folder\\v2rayA\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
         ]
     },
-    "bin": "v2rayA-service.exe",
+    "bin": [
+        "v2rayA-service.exe",
+        "reset-passwd-v2raya-np.ps1"
+    ],
+    "persist": "config",
     "checkver": {
         "url": "https://api.github.com/repos/v2rayA/v2raya/releases/latest",
         "regex": "installer_windows_inno_x64_([\\d.]+)\\.exe"
