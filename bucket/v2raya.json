@@ -43,7 +43,7 @@
         [
             "v2rayaWin.exe",
             "v2raya",
-            "--lite"
+            "--lite --config \"$dir\\config\""
         ],
         [
             "v2rayaWin.exe",
@@ -54,8 +54,7 @@
         "reset-passwd-v2raya.ps1"
     ],
     "env_set": {
-        "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe",
-        "V2RAYA_CONFIG": "$(scoop prefix v2raya)\\config"
+        "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe"
     },
     "persist": "config",
     "checkver": {

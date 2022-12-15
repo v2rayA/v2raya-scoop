@@ -49,7 +49,7 @@
         [
             "v2rayaWin-unstable.exe",
             "v2raya-unstable",
-            "--lite"
+            "--lite --config \"$dir\\config\""
         ],
         [
             "v2rayaWin-unstable.exe",
@@ -60,8 +60,7 @@
         "reset-passwd-v2raya-unstable.ps1"
     ],
     "env_set": {
-        "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe",
-        "V2RAYA_CONFIG": "$(scoop prefix v2raya)\\config"
+        "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe"
     },
     "persist": "config",
     "checkver": {
