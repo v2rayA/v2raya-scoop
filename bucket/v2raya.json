@@ -21,11 +21,6 @@
             "hash": "11c08ef6b0ea35fc05e925e3c1f99112355e695646602d05f1bf0c1bcbeda3a5"
         }
     },
-    "pre_install": [
-        "Import-Module \"$bucketsdir\\v2raya\\scripts\\V2rayaUtils.psm1\"",
-        "Mount-ExternalRuntimeData -Source \"$persist_dir\\config\" -Target \"$env:UserProfile\\.config\\v2raya\"",
-        "Remove-Module -Name V2rayaUtils"
-    ],
     "post_install": [
         "@('start-v2raya', 'stop-v2raya', 'reset-passwd-v2raya') | ForEach-Object {",
         "    Copy-Item \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\" \"$dir\\$_.ps1\"",
@@ -40,10 +35,7 @@
         "    $content | Set-Content -Path \"$dir\\$_.reg\" -Encoding Ascii",
         "}"
     ],
-    "pre_uninstall": [
-        "stop-v2raya",
-        "Remove-Item \"$env:UserProfile\\.config\\v2raya\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
-    ],
+    "pre_uninstall": "stop-v2raya",
     "uninstaller": {
         "script": "if ($cmd -eq 'uninstall') { reg import \"$dir\\remove-startup.reg\" }"
     },
@@ -62,8 +54,10 @@
         "reset-passwd-v2raya.ps1"
     ],
     "env_set": {
-        "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe"
+        "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe",
+        "V2RAYA_CONFIG": "$(scoop prefix v2raya)\\config"
     },
+    "persist": "config",
     "checkver": {
         "url": "https://api.github.com/repos/v2rayA/v2raya/releases/latest",
         "regex": "v2raya_windows_x64_([\\d.]+).exe"
