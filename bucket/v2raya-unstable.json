@@ -23,13 +23,6 @@
             "pre_install": "Rename-Item \"$dir\\v2raya_windows_arm64_unstable-$version.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force"
         }
     },
-    "installer": {
-        "script": [
-            "Import-Module \"$bucketsdir\\v2raya\\scripts\\V2rayaUtils.psm1\"",
-            "Mount-ExternalRuntimeData -Source \"$persist_dir\\config\" -Target \"$env:UserProfile\\.config\\v2raya\"",
-            "Remove-Module -Name V2rayaUtils"
-        ]
-    },
     "post_install": [
         "@('start-v2raya', 'stop-v2raya', 'reset-passwd-v2raya') | ForEach-Object {",
         "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\"",
@@ -48,10 +41,7 @@
         "    $content | Set-Content -Path \"$dir\\$_.reg\" -Encoding Ascii",
         "}"
     ],
-    "pre_uninstall": [
-        "stop-v2raya-unstable",
-        "Remove-Item \"$env:UserProfile\\.config\\v2raya\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
-    ],
+    "pre_uninstall": "stop-v2raya-unstable",
     "uninstaller": {
         "script": "if ($cmd -eq 'uninstall') { reg import \"$dir\\remove-startup.reg\" }"
     },
@@ -70,8 +60,10 @@
         "reset-passwd-v2raya-unstable.ps1"
     ],
     "env_set": {
-        "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe"
+        "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe",
+        "V2RAYA_CONFIG": "$(scoop prefix v2raya)\\config"
     },
+    "persist": "config",
     "checkver": {
         "url": "https://scoop-apps.vercel.app/v2rayA/v2rayA",
         "regex": "(?sm)/v2rayA/v2rayA/actions/runs/(?<runid>\\d+).*?v2raya_windows_x64_unstable-([\\w.]+)\\.exe"
