@@ -24,9 +24,7 @@
     "pre_install": [
         "Import-Module \"$bucketsdir\\v2raya\\scripts\\V2rayaUtils.psm1\"",
         "Mount-ExternalRuntimeData -Source \"$persist_dir\\config\" -Target \"$env:UserProfile\\.config\\v2raya\"",
-        "Remove-Module -Name V2rayaUtils"
-    ],
-    "post_install": [
+        "Remove-Module -Name V2rayaUtils",
         "@('start-v2raya', 'stop-v2raya', 'reset-passwd-v2raya') | ForEach-Object {",
         "    Copy-Item \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\" \"$dir\\$_.ps1\"",
         "}",

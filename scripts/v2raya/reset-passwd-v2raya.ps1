@@ -1,4 +1,4 @@
-taskkill.exe /F /IM v2rayawin.exe /FI "status eq running" | Out-Null
+taskkill.exe /F /IM v2rayaWin.exe /FI "status eq running" | Out-Null
 
 $resetPWOptions = @("--lite", "--reset-password")
 Start-Process "$(scoop prefix v2raya)\v2rayaWin.exe" -ArgumentList $resetPWOptions -WorkingDirectory "$env:TEMP" -WindowStyle Hidden -Wait
