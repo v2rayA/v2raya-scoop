@@ -21,22 +21,20 @@
     "installer": {
         "script": [
             "$args = @('/VERYSILENT', '/NORESTART', \"/DIR=`\"$dir`\"\")",
-            "Start-Process \"$dir\\setup.exe\" -ArgumentList $args -Wait -Verb RunAs"
+            "Start-Process \"$dir\\setup.exe\" -ArgumentList $args -Wait -Verb RunAs",
+            "@('reset-passwd-v2raya-np') | ForEach-Object {",
+            "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\"",
+            "    $content = $content.Replace('v2raya-np', ' v2raya-unstable-np')",
+            "    $content | Set-Content -Path \"$dir\\reset-passwd-v2raya-unstable-np.ps1\" -Encoding Ascii",
+            "}",
+            "#Remove-Item \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\v2rayA\" -Force -Recurse -ErrorAction 'SilentlyContinue'",
+            "Remove-Item \"$dir\\setup.exe\" -Force -ErrorAction 'SilentlyContinue'",
+            "$v2raya_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath('CommonStartMenu'), 'Programs', 'v2rayA')",
+            "if ($global) { $startmenu = 'CommonStartMenu' } else { $startmenu = 'StartMenu' }",
+            "$scoop_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath($startmenu), 'Programs', 'Scoop Apps')",
+            "Move-Item \"$v2raya_startmenu_folder\" \"$scoop_startmenu_folder\\\" -ErrorAction 'SilentlyContinue' -Force"
         ]
     },
-    "post_install": [
-        "@('reset-passwd-v2raya-np') | ForEach-Object {",
-        "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\"",
-        "    $content = $content.Replace('v2raya-np', ' v2raya-unstable-np')",
-        "    $content | Set-Content -Path \"$dir\\reset-passwd-v2raya-unstable-np.ps1\" -Encoding Ascii",
-        "}",
-        "#Remove-Item \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\v2rayA\" -Force -Recurse -ErrorAction 'SilentlyContinue'",
-        "Remove-Item \"$dir\\setup.exe\" -Force -ErrorAction 'SilentlyContinue'",
-        "$v2raya_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath('CommonStartMenu'), 'Programs', 'v2rayA')",
-        "if ($global) { $startmenu = 'CommonStartMenu' } else { $startmenu = 'StartMenu' }",
-        "$scoop_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath($startmenu), 'Programs', 'Scoop Apps')",
-        "Move-Item \"$v2raya_startmenu_folder\" \"$scoop_startmenu_folder\\\" -ErrorAction 'SilentlyContinue' -Force"
-    ],
     "uninstaller": {
         "script": [
             "Start-Process \"$dir\\unins000.exe\" -ArgumentList @('/VERYSILENT', '/NORESTART') -Wait -Verb RunAs",

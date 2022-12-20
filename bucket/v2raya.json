@@ -22,7 +22,6 @@
         }
     },
     "pre_install": [
-
         "@('start-v2raya', 'stop-v2raya', 'reset-passwd-v2raya') | ForEach-Object {",
         "    Copy-Item \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\" \"$dir\\$_.ps1\"",
         "}",
