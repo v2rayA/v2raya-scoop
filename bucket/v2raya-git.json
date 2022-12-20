@@ -1,5 +1,5 @@
 {
-    "version": "20221211.38afbd4",
+    "version": "20221217.84abb87",
     "description": "v2rayA(source code for compilation). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -19,9 +19,9 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/v2rayA/v2rayA/archive/38afbd4f03a7b1816b7da30e7c5f5f9eb167f222.zip",
-            "hash": "d50062197ddd9ea5a5863c84849d5b2391f62e8dcc41b09797eb154c579cb317",
-            "extract_dir": "v2rayA-38afbd4f03a7b1816b7da30e7c5f5f9eb167f222"
+            "url": "https://github.com/v2rayA/v2rayA/archive/84abb8797773fa6ebeb06a14c1cd1c7bf3e0587d.zip",
+            "hash": "5ab144cd906c651a29c598dff055096fe6a4440f6338f73a498f75c2c7a86425",
+            "extract_dir": "v2rayA-84abb8797773fa6ebeb06a14c1cd1c7bf3e0587d"
         }
     },
     "pre_install": [
@@ -77,27 +77,25 @@
             "$versions = 'unstable-' + $version",
             "Set-Location -Path \"$dir/service\"",
             "go build -ldflags \"-X github.com/v2rayA/v2rayA/conf.Version=$versions -s -w\" -o \"$dir/v2rayaWin-git.exe\"",
-            "Pop-Location"
+            "Pop-Location",
+            "@('start-v2raya', 'stop-v2raya', 'reset-passwd-v2raya') | ForEach-Object {",
+            "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\"",
+            "    $content = $content.Replace(' v2raya', ' v2raya-git')",
+            "    $content = $content.Replace('v2rayaWin', 'v2rayaWin-git')",
+            "    $content | Set-Content -Path \"$dir\\$_-git.ps1\" -Encoding Ascii",
+            "}",
+            "$exepath = \"powershell -NoLogo -NoProfile -ExecutionPolicy -File $bucketsdir\\v2raya\\scripts\\v2raya\\start-v2raya-git.ps1\".Replace('\\', '\\\\')",
+            "@('add-startup', 'remove-startup') | ForEach-Object {",
+            "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.reg\"",
+            "    $content = $content.Replace('$exepath', $exepath)",
+            "    $content = $content.Replace('v2rayA', 'v2rayA-git')",
+            "    if ($global) {",
+            "       $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+            "    }",
+            "    $content | Set-Content -Path \"$dir\\$_.reg\" -Encoding Ascii",
+            "}"
         ]
     },
-    "post_install": [
-        "@('start-v2raya', 'stop-v2raya', 'reset-passwd-v2raya') | ForEach-Object {",
-        "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\"",
-        "    $content = $content.Replace(' v2raya', ' v2raya-git')",
-        "    $content = $content.Replace('v2rayaWin', 'v2rayaWin-git')",
-        "    $content | Set-Content -Path \"$dir\\$_-git.ps1\" -Encoding Ascii",
-        "}",
-        "$exepath = \"powershell -NoLogo -NoProfile -ExecutionPolicy -File $bucketsdir\\v2raya\\scripts\\v2raya\\start-v2raya-git.ps1\".Replace('\\', '\\\\')",
-        "@('add-startup', 'remove-startup') | ForEach-Object {",
-        "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.reg\"",
-        "    $content = $content.Replace('$exepath', $exepath)",
-        "    $content = $content.Replace('v2rayA', 'v2rayA-git')",
-        "    if ($global) {",
-        "       $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
-        "    }",
-        "    $content | Set-Content -Path \"$dir\\$_.reg\" -Encoding Ascii",
-        "}"
-    ],
     "pre_uninstall": [
         "stop-v2raya-git",
         "Remove-Item \"$env:UserProfile\\.config\\v2raya\" -Recurse -Force -ErrorAction 'SilentlyContinue'"

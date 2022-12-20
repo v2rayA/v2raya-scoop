@@ -21,7 +21,8 @@
             "hash": "11c08ef6b0ea35fc05e925e3c1f99112355e695646602d05f1bf0c1bcbeda3a5"
         }
     },
-    "post_install": [
+    "pre_install": [
+
         "@('start-v2raya', 'stop-v2raya', 'reset-passwd-v2raya') | ForEach-Object {",
         "    Copy-Item \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\" \"$dir\\$_.ps1\"",
         "}",
