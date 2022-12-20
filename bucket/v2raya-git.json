@@ -24,11 +24,6 @@
             "extract_dir": "v2rayA-84abb8797773fa6ebeb06a14c1cd1c7bf3e0587d"
         }
     },
-    "pre_install": [
-        "Import-Module \"$bucketsdir\\v2raya\\scripts\\V2rayaUtils.psm1\"",
-        "Mount-ExternalRuntimeData -Source \"$persist_dir\\config\" -Target \"$env:UserProfile\\.config\\v2raya\"",
-        "Remove-Module -Name V2rayaUtils"
-    ],
     "installer": {
         "script": [
             "${env:GOPROXY} = 'https://proxy.golang.com.cn,direct'",
@@ -97,8 +92,7 @@
         ]
     },
     "pre_uninstall": [
-        "stop-v2raya-git",
-        "Remove-Item \"$env:UserProfile\\.config\\v2raya\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+        "stop-v2raya-git"
     ],
     "uninstaller": {
         "script": "if ($cmd -eq 'uninstall') { reg import \"$dir\\remove-startup.reg\" }"
