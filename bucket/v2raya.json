@@ -25,7 +25,7 @@
         "@('start-v2raya', 'stop-v2raya', 'reset-passwd-v2raya') | ForEach-Object {",
         "    Copy-Item \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\" \"$dir\\$_.ps1\"",
         "}",
-        "$exepath = \"powershell -NoLogo -NoProfile -ExecutionPolicy -File $dir\\start-v2raya.ps1\".Replace('\\', '\\\\')",
+        "$exepath = \"powershell -NoLogo -NoProfile -File $dir\\start-v2raya.ps1\".Replace('\\', '\\\\')",
         "@('add-startup', 'remove-startup') | ForEach-Object {",
         "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.reg\"",
         "    $content = $content.Replace('$exepath', $exepath)",
