@@ -34,7 +34,7 @@
                 "    $content = $content.Replace('v2rayaWin', 'v2rayaWin-unstable')",
                 "    $content | Set-Content -Path \"$dir\\$_-unstable.ps1\" -Encoding Ascii",
                 "}",
-                "$exepath = \"powershell -NoLogo -NoProfile -ExecutionPolicy -File $bucketsdir\\v2raya\\scripts\\v2raya\\start-v2raya-unstable.ps1\".Replace('\\', '\\\\')",
+                "$exepath = \"powershell -NoLogo -NoProfile -ExecutionPolicy -File $dir\\start-v2raya-unstable.ps1\".Replace('\\', '\\\\')",
                 "@('add-startup', 'remove-startup') | ForEach-Object {",
                 "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.reg\"",
                 "    $content = $content.Replace('$exepath', $exepath)",
