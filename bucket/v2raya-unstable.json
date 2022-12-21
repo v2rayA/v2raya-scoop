@@ -26,29 +26,27 @@
     "installer": {
         "script": [
             "Import-Module \"$bucketsdir\\v2raya\\scripts\\V2rayaUtils.psm1\"",
-            "Mount-ExternalRuntimeData -Source \"$persist_dir\\config\" -Target \"$env:UserProfile\\.config\\v2raya\"",
             "Remove-Module -Name V2rayaUtils",
-                "@('start-v2raya', 'stop-v2raya', 'reset-passwd-v2raya') | ForEach-Object {",
-                "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\"",
-                "    $content = $content.Replace(' v2raya', ' v2raya-unstable')",
-                "    $content = $content.Replace('v2rayaWin', 'v2rayaWin-unstable')",
-                "    $content | Set-Content -Path \"$dir\\$_-unstable.ps1\" -Encoding Ascii",
-                "}",
-                "$exepath = \"powershell -NoLogo -NoProfile -File $dir\\start-v2raya-unstable.ps1\".Replace('\\', '\\\\')",
-                "@('add-startup', 'remove-startup') | ForEach-Object {",
-                "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.reg\"",
-                "    $content = $content.Replace('$exepath', $exepath)",
-                "    $content = $content.Replace('v2rayA', 'v2rayA-unstable')",
-                "    if ($global) {",
-                "       $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
-                "    }",
-                "    $content | Set-Content -Path \"$dir\\$_.reg\" -Encoding Ascii",
-                "}"
+            "@('start-v2raya', 'stop-v2raya', 'reset-passwd-v2raya') | ForEach-Object {",
+            "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\"",
+            "    $content = $content.Replace(' v2raya', ' v2raya-unstable')",
+            "    $content = $content.Replace('v2rayaWin', 'v2rayaWin-unstable')",
+            "    $content | Set-Content -Path \"$dir\\$_-unstable.ps1\" -Encoding Ascii",
+            "}",
+            "$exepath = \"powershell -NoLogo -NoProfile -File $dir\\start-v2raya-unstable.ps1\".Replace('\\', '\\\\')",
+            "@('add-startup', 'remove-startup') | ForEach-Object {",
+            "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.reg\"",
+            "    $content = $content.Replace('$exepath', $exepath)",
+            "    $content = $content.Replace('v2rayA', 'v2rayA-unstable')",
+            "    if ($global) {",
+            "       $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+            "    }",
+            "    $content | Set-Content -Path \"$dir\\$_.reg\" -Encoding Ascii",
+            "}"
         ]
     },
     "pre_uninstall": [
-        "stop-v2raya-unstable",
-        "Remove-Item \"$env:UserProfile\\.config\\v2raya\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+        "stop-v2raya-unstable"
     ],
     "uninstaller": {
         "script": "if ($cmd -eq 'uninstall') { reg import \"$dir\\remove-startup.reg\" }"
