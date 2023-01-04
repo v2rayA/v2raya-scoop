@@ -1,5 +1,5 @@
 {
-    "version": "20221217.84abb87",
+    "version": "20230104.0055a61",
     "description": "v2rayA(source code for compilation). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -19,9 +19,9 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/v2rayA/v2rayA/archive/84abb8797773fa6ebeb06a14c1cd1c7bf3e0587d.zip",
-            "hash": "5ab144cd906c651a29c598dff055096fe6a4440f6338f73a498f75c2c7a86425",
-            "extract_dir": "v2rayA-84abb8797773fa6ebeb06a14c1cd1c7bf3e0587d"
+            "url": "https://github.com/v2rayA/v2rayA/archive/0055a619880ddefa9952ec90e87a07962b819399.zip",
+            "hash": "f29cdef269149336e1c0cb7ed5172bae033d1df4d2571efc3c2e55db33bffe98",
+            "extract_dir": "v2rayA-0055a619880ddefa9952ec90e87a07962b819399"
         }
     },
     "installer": {
@@ -91,9 +91,7 @@
             "}"
         ]
     },
-    "pre_uninstall": [
-        "stop-v2raya-git"
-    ],
+    "pre_uninstall": "stop-v2raya-git",
     "uninstaller": {
         "script": "if ($cmd -eq 'uninstall') { reg import \"$dir\\remove-startup.reg\" }"
     },
