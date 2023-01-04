@@ -1,5 +1,5 @@
 {
-    "version": "20230104.r1285.5f1e940",
+    "version": "20230104.r1286.8ac6646",
     "description": "v2rayA(unstable version, inno installer). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -8,13 +8,13 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3836684512/installer_windows_inno_x64_unstable-20230104.r1285.5f1e940.exe.zip",
-            "hash": "5e871ea1b8481a6ac2bc7efbca641a156dda56ba55bb556f4a21d1ca77b37f96",
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3838520657/installer_windows_inno_x64_unstable-20230104.r1286.8ac6646.exe.zip",
+            "hash": "cc6cc464d75accceb9bcc24327988fdc669a9981a7a60944c926c7432cfb100a",
             "pre_install": "Rename-Item \"$dir\\installer_windows_inno_x64_unstable-$version.exe\" 'setup.exe' -ErrorAction 'SilentlyContinue' -Force"
         },
         "arm64": {
-            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3836684512/installer_windows_inno_arm64_unstable-20230104.r1285.5f1e940.exe.zip",
-            "hash": "9a24b27eba05f828237c1df4ed0b7d115c9e3638e40f7416e6bccdcc6450240e",
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3838520657/installer_windows_inno_arm64_unstable-20230104.r1286.8ac6646.exe.zip",
+            "hash": "6d40979a8b59e48cdfc3b36f8ba23e33da1e378e6aa79afb71d47b1d52c7fdd2",
             "pre_install": "Rename-Item \"$dir\\installer_windows_inno_arm64_unstable-$version.exe\" 'setup.exe' -ErrorAction 'SilentlyContinue' -Force"
         }
     },
