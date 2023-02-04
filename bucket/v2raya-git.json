@@ -1,5 +1,5 @@
 {
-    "version": "20230129.ecbd2dd",
+    "version": "20230204.d626ba1",
     "description": "v2rayA(source code for compilation). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -19,9 +19,9 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/v2rayA/v2rayA/archive/ecbd2ddc55b4af7d5731660daa43adf956538ac7.zip",
-            "hash": "7dfbd27ee21cb0365387ec004b4a4ec6716d315a68ec96baf98616a919037fee",
-            "extract_dir": "v2rayA-ecbd2ddc55b4af7d5731660daa43adf956538ac7"
+            "url": "https://github.com/v2rayA/v2rayA/archive/d626ba112325c9830c3e8e90465286a4ea65bb9f.zip",
+            "hash": "7d9ebd01e1fff4cdd4ff609ffcb7f58ba9633916d97482ce73a558b7f09b1ca0",
+            "extract_dir": "v2rayA-d626ba112325c9830c3e8e90465286a4ea65bb9f"
         }
     },
     "installer": {
