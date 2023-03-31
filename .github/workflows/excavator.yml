@@ -18,6 +18,7 @@ jobs:
       - uses: actions/checkout@main
       - name: Excavate
         run: |
+          Set-PSDebug -Trace 1
           $env:SCOOP = Join-Path $env:USERPROFILE 'SCOOP'
           $env:SCOOP_HOME = Join-Path $env:SCOOP 'apps\scoop\current'
           $env:SCOOP_GLOBAL = Join-Path $env:SystemDrive 'SCOOP'
