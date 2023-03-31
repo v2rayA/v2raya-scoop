@@ -18,7 +18,6 @@ jobs:
       - uses: actions/checkout@main
       - name: Excavate
         run: |
-          Set-PSDebug -Trace 1
           $env:SCOOP = Join-Path $env:USERPROFILE 'SCOOP'
           $env:SCOOP_HOME = Join-Path $env:SCOOP 'apps\scoop\current'
           $env:SCOOP_GLOBAL = Join-Path $env:SystemDrive 'SCOOP'
@@ -57,5 +56,7 @@ jobs:
 
           $env:SCOOP_GH_TOKEN = $env:GITHUB_TOKEN
 
+          Set-PSDebug -Trace 1
           & (Join-Path $BINARIES_FOLDER 'auto-pr.ps1') @params
           Write-Host 'Scheduled finished'
+          Set-PSDebug -Trace 0
