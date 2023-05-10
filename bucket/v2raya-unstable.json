@@ -1,5 +1,5 @@
 {
-    "version": "20230510.r1338.8e156b9",
+    "version": "20230510.r1340.25975fb",
     "description": "v2rayA(unstable version). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -13,13 +13,13 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/4928396289/v2raya_windows_x64_unstable-20230510.r1338.8e156b9.exe.zip",
-            "hash": "856b4cefe49151f9a237dddf25be92ed392ed43b5bf9d2ea962240f141a83bd0",
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/4937998354/v2raya_windows_x64_unstable-20230510.r1340.25975fb.exe.zip",
+            "hash": "c08b9be2b19c789259a1fa0fd3acbeffd1306548cfa1e0f4da57d496b4456201",
             "pre_install": "Rename-Item \"$dir\\v2raya_windows_x64_unstable-$version.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force"
         },
         "arm64": {
-            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/4928396289/v2raya_windows_arm64_unstable-20230510.r1338.8e156b9.exe.zip",
-            "hash": "fe6b9745fab5389105cc1e21a463a949160e222f287916b0dd7fb8b7c2c3ab54",
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/4937998354/v2raya_windows_arm64_unstable-20230510.r1340.25975fb.exe.zip",
+            "hash": "940f69e12854228a78d47303728d14571a6215d60234dccd3691abba8288d42f",
             "pre_install": "Rename-Item \"$dir\\v2raya_windows_arm64_unstable-$version.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force"
         }
     },
