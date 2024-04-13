@@ -1,5 +1,5 @@
 {
-    "version": "20240320.8b864a2",
+    "version": "20240413.6c96d68",
     "description": "v2rayA(source code for compilation). A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan, Tuic and Juicity protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -19,9 +19,9 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/v2rayA/v2rayA/archive/8b864a22a51e453d8d6cb367edbea8dfec9aa3a5.zip",
-            "hash": "1dcfd3e8eb6f90e319aaa0a0975dbf3766a73df2db37a75671d50b1eb85315b6",
-            "extract_dir": "v2rayA-8b864a22a51e453d8d6cb367edbea8dfec9aa3a5"
+            "url": "https://github.com/v2rayA/v2rayA/archive/6c96d68880e599ec4e39ca3ebb0b51694b042d07.zip",
+            "hash": "9a8a925e237c66f0158d7a2f481a3e73a490fa1988fc23970ffdb288970c7af0",
+            "extract_dir": "v2rayA-6c96d68880e599ec4e39ca3ebb0b51694b042d07"
         }
     },
     "installer": {
