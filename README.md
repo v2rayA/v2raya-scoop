@@ -23,7 +23,7 @@ English | [**简体中文**](https://github.com/v2rayA/v2raya-scoop/blob/main/RE
 
 ### Add Bucket
 
-```ps1
+```powershell
 > scoop bucket add v2raya https://github.com/v2rayA/v2raya-scoop # Add bucket
 > scoop update # Update bucket
 ```
@@ -32,14 +32,14 @@ English | [**简体中文**](https://github.com/v2rayA/v2raya-scoop/blob/main/RE
 
 #### Using the installer (recommended)
 
-```ps1
+```powershell
 > scoop install v2raya-np # stable version (recommended)
 > #scoop install v2raya-unstable-np # unstable version
 ```
 
 #### Using the binary
 
-```ps1
+```powershell
 > scoop install v2raya
 > scoop install v2ray-rules-dat # install V2Ray rules dat(optional)
 ```
@@ -56,26 +56,38 @@ You can use `Win + R` to open a Runs window, and run `reset-passwd-v2raya-np` co
 
 ### Using the binary
 
-> - `v2raya` command has been shimed by Scoop to run v2rayA with `--lite` arg, `v2rayawin` command is the origin v2rayA.
-> - Env `V2RAYA_V2RAY_BIN` will be set to `$(scoop prefix v2ray)\\v2ray.exe`.
+> -   `v2raya` command has been shimed by Scoop to run v2rayA with `--lite` arg, `v2rayawin` command is the origin v2rayA.
+> -   Env `V2RAYA_V2RAY_BIN` will be set to `$(scoop prefix v2ray)\\v2ray.exe`.
 
 #### Start/Stop v2rayA
 
 You can use `Win + R` to open a Runs window, and run `v2raya` command in it.
 
-- Run `v2raya` or `v2rayaWin --lite` to start v2rayA.
-- Run `start-v2raya` to start v2rayA in the background.
-- Run `stop-v2raya` to stop v2rayA.
+-   Run `v2raya` or `v2rayaWin --lite` to start v2rayA.
+-   Run `start-v2raya` to start v2rayA in the background.
+-   Run `stop-v2raya` to stop v2rayA.
 
 #### Reset Passwd
 
-- Run `reset-passwd-v2raya` to reset the password of v2rayA.
+-   Run `reset-passwd-v2raya` to reset the password of v2rayA.
 
 #### Add v2raya to startup
 
-```ps1
+```powershell
 > reg import "$(scoop prefix v2raya)\add-startup.reg"
 
 # remove
 > reg import "$(scoop prefix v2raya)\remove-startup.reg"
+```
+
+#### Use xray core
+
+```powershell
+> scoop install v2raya/xray
+
+# 回退使用 v2ray 内核
+> scoop reset v2raya
+
+# 使用 xray 内核
+> scoop reset xray
 ```

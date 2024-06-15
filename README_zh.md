@@ -56,20 +56,20 @@
 
 ### 使用二进制文件
 
-> - `v2raya` 命令已被 Scoop 绑定，以 `--lite` 参数运行 v2rayA，`v2rayawin` 命令是原始的 v2rayA。
-> - 环境变量 `V2RAYA_V2RAY_BIN` 将被设置为 `$(scoop prefix v2ray)\\v2ray.exe`。
+> -   `v2raya` 命令已被 Scoop 绑定，以 `--lite` 参数运行 v2rayA，`v2rayawin` 命令是原始的 v2rayA。
+> -   环境变量 `V2RAYA_V2RAY_BIN` 将被设置为 `$(scoop prefix v2ray)\\v2ray.exe`。
 
 #### 启动/停止 v2rayA
 
 你可以使用 `Win + R` 打开运行窗口，并运行 `v2raya` 命令。
 
-- 运行 `v2raya` 或 `v2rayaWin --lite` 以启动 v2rayA。
-- 运行 `start-v2raya` 以在后台启动 v2rayA。
-- 运行 `stop-v2raya` 以停止 v2rayA。
+-   运行 `v2raya` 或 `v2rayaWin --lite` 以启动 v2rayA。
+-   运行 `start-v2raya` 以在后台启动 v2rayA。
+-   运行 `stop-v2raya` 以停止 v2rayA。
 
 #### 重置密码
 
-- 运行 `reset-passwd-v2raya` 以重置 v2rayA 的密码。
+-   运行 `reset-passwd-v2raya` 以重置 v2rayA 的密码。
 
 #### 添加 v2raya 到启动项
 
