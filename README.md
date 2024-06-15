@@ -85,9 +85,9 @@ You can use `Win + R` to open a Runs window, and run `v2raya` command in it.
 ```powershell
 > scoop install v2raya/xray
 
-# 回退使用 v2ray 内核
+# use v2raya core
 > scoop reset v2raya
 
-# 使用 xray 内核
+# use xray core
 > scoop reset xray
 ```
