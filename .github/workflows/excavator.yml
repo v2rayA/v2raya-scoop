@@ -40,7 +40,7 @@ jobs:
           $f = Join-Path $env:USERPROFILE 'install.ps1'
           Invoke-WebRequest 'https://raw.githubusercontent.com/ScoopInstaller/Install/master/install.ps1' -UseBasicParsing -OutFile $f
           & $f -RunAsAdmin
-
+          scoop install hub
           Write-Host 'Importing all modules'
           # Load all scoop's modules.
           # Dot sourcing needs to be done on highest scope possible to propagate into lower scopes
@@ -56,5 +56,7 @@ jobs:
 
           $env:SCOOP_GH_TOKEN = $env:GITHUB_TOKEN
 
+          Set-PSDebug -Trace 1
           & (Join-Path $BINARIES_FOLDER 'auto-pr.ps1') @params
           Write-Host 'Scheduled finished'
+          Set-PSDebug -Trace 0

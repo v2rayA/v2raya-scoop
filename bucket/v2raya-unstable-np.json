@@ -1,6 +1,6 @@
 {
-    "version": "20221211.r1267.38afbd4",
-    "description": "v2rayA(unstable version, inno installer). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
+    "version": "20240414.r1539.b0e207f5",
+    "description": "v2rayA(unstable version, inno installer). A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan, Tuic and Juicity protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
         "identifier": "AGPL-3.0-only",
@@ -8,35 +8,33 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3668713054/installer_windows_inno_x64_unstable-20221211.r1267.38afbd4.exe.zip",
-            "hash": "ecdbc7e921715789c68a4b4a4e3119f813f9adf0a9c7d7ec684f3d4ffc7870fd",
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/8680163729/installer_windows_inno_x64_unstable-20240414.r1539.b0e207f5.exe.zip",
+            "hash": "2ed54af2273570ba0f057ffae2602a75bc55b353e0feefd178c0f451e4ea4041",
             "pre_install": "Rename-Item \"$dir\\installer_windows_inno_x64_unstable-$version.exe\" 'setup.exe' -ErrorAction 'SilentlyContinue' -Force"
         },
         "arm64": {
-            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3668713054/installer_windows_inno_arm64_unstable-20221211.r1267.38afbd4.exe.zip",
-            "hash": "04f017fda7cff0bf52d402fa33d1ba4e6cedca935232a6d0713062123adfbfe5",
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/8680163729/installer_windows_inno_arm64_unstable-20240414.r1539.b0e207f5.exe.zip",
+            "hash": "1d743526a8d8cc4b4b95ef4bb730d59f1ba37ec0bc3bc0d8217852381af12487",
             "pre_install": "Rename-Item \"$dir\\installer_windows_inno_arm64_unstable-$version.exe\" 'setup.exe' -ErrorAction 'SilentlyContinue' -Force"
         }
     },
     "installer": {
         "script": [
             "$args = @('/VERYSILENT', '/NORESTART', \"/DIR=`\"$dir`\"\")",
-            "Start-Process \"$dir\\setup.exe\" -ArgumentList $args -Wait -Verb RunAs"
+            "Start-Process \"$dir\\setup.exe\" -ArgumentList $args -Wait -Verb RunAs",
+            "@('reset-passwd-v2raya-np') | ForEach-Object {",
+            "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\"",
+            "    $content = $content.Replace('v2raya-np', ' v2raya-unstable-np')",
+            "    $content | Set-Content -Path \"$dir\\reset-passwd-v2raya-unstable-np.ps1\" -Encoding Ascii",
+            "}",
+            "#Remove-Item \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\v2rayA\" -Force -Recurse -ErrorAction 'SilentlyContinue'",
+            "Remove-Item \"$dir\\setup.exe\" -Force -ErrorAction 'SilentlyContinue'",
+            "$v2raya_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath('CommonStartMenu'), 'Programs', 'v2rayA')",
+            "if ($global) { $startmenu = 'CommonStartMenu' } else { $startmenu = 'StartMenu' }",
+            "$scoop_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath($startmenu), 'Programs', 'Scoop Apps')",
+            "Move-Item \"$v2raya_startmenu_folder\" \"$scoop_startmenu_folder\\\" -ErrorAction 'SilentlyContinue' -Force"
         ]
     },
-    "post_install": [
-        "@('reset-passwd-v2raya-np') | ForEach-Object {",
-        "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\"",
-        "    $content = $content.Replace('v2raya-np', ' v2raya-unstable-np')",
-        "    $content | Set-Content -Path \"$dir\\reset-passwd-v2raya-unstable-np.ps1\" -Encoding Ascii",
-        "}",
-        "#Remove-Item \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\v2rayA\" -Force -Recurse -ErrorAction 'SilentlyContinue'",
-        "Remove-Item \"$dir\\setup.exe\" -Force -ErrorAction 'SilentlyContinue'",
-        "$v2raya_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath('CommonStartMenu'), 'Programs', 'v2rayA')",
-        "if ($global) { $startmenu = 'CommonStartMenu' } else { $startmenu = 'StartMenu' }",
-        "$scoop_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath($startmenu), 'Programs', 'Scoop Apps')",
-        "Move-Item \"$v2raya_startmenu_folder\" \"$scoop_startmenu_folder\\\" -ErrorAction 'SilentlyContinue' -Force"
-    ],
     "uninstaller": {
         "script": [
             "Start-Process \"$dir\\unins000.exe\" -ArgumentList @('/VERYSILENT', '/NORESTART') -Wait -Verb RunAs",
@@ -51,7 +49,7 @@
     ],
     "persist": "config",
     "checkver": {
-        "url": "https://scoop-apps.vercel.app/v2rayA/v2rayA-inno",
+        "url": "https://scoop-apps.vercel.app/v2rayA/v2rayA",
         "regex": "(?sm)/v2rayA/v2rayA/actions/runs/(?<runid>\\d+).*?installer_windows_inno_x64_unstable-([\\w.]+)\\.exe"
     },
     "autoupdate": {

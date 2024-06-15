@@ -1,1 +1,1 @@
-taskkill.exe /F /IM v2rayawin.exe /FI "status eq running" | Out-Null
+taskkill.exe /IM 'v2rayaWin.exe' /FI "status eq running" | Out-Null
