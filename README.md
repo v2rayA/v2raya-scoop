@@ -1,4 +1,6 @@
-# v2raya-scoop
+# v2raya-scoop [![Excavator](https://github.com/v2rayA/v2raya-scoop/actions/workflows/excavator.yml/badge.svg)](https://github.com/v2rayA/v2raya-scoop/actions/workflows/excavator.yml)
+
+English | [**简体中文**](https://github.com/v2rayA/v2raya-scoop/blob/main/README_zh.md)
 
 [Scoop](https://scoop.sh) bucket of v2rayA for Windows users.
 
