@@ -79,3 +79,15 @@
 # 移除
 > reg import "$(scoop prefix v2raya)\remove-startup.reg"
 ```
+
+#### 使用 xray 内核
+
+```powershell
+> scoop install v2raya/xray
+
+# 回退使用 v2ray 内核
+> scoop reset v2raya
+
+# 使用 xray 内核
+> scoop reset xray
+```
