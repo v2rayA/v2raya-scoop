@@ -1,5 +1,5 @@
 {
-    "version": "20240618.r1540.1c486b40",
+    "version": "20240619.r1542.62c14cc9",
     "description": "v2rayA(unstable version, inno installer). A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan, Tuic and Juicity protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -8,13 +8,13 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/9553502018/installer_windows_inno_x64_unstable-20240618.r1540.1c486b40.exe.zip",
-            "hash": "5bc5d51455e36636f45f095b2dcc2048bf00c083cf78ede0c576ec3f15665fe4",
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/9583726828/installer_windows_inno_x64_unstable-20240619.r1542.62c14cc9.exe.zip",
+            "hash": "8e92d8dff79cb34c6926ddf9016a984d7e2952a07dd13f58331efba6909cadf9",
             "pre_install": "Rename-Item \"$dir\\installer_windows_inno_x64_unstable-$version.exe\" 'setup.exe' -ErrorAction 'SilentlyContinue' -Force"
         },
         "arm64": {
-            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/9553502018/installer_windows_inno_arm64_unstable-20240618.r1540.1c486b40.exe.zip",
-            "hash": "431636b4aea398ea614bcdbc5fb941e1f79fb73a9eb71240e328390c0b868cbc",
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/9583726828/installer_windows_inno_arm64_unstable-20240619.r1542.62c14cc9.exe.zip",
+            "hash": "d2358082ea8b1553b71e17de1482b6dfe18469994e6522b6c0f4068836934745",
             "pre_install": "Rename-Item \"$dir\\installer_windows_inno_arm64_unstable-$version.exe\" 'setup.exe' -ErrorAction 'SilentlyContinue' -Force"
         }
     },
