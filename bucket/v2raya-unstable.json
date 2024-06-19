@@ -1,5 +1,5 @@
 {
-    "version": "20240618.r1540.1c486b40",
+    "version": "20240619.r1542.62c14cc9",
     "description": "v2rayA(unstable version). A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan, Tuic and Juicity protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -13,13 +13,13 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/9553502018/v2raya_windows_x64_unstable-20240618.r1540.1c486b40.exe.zip",
-            "hash": "f224867fdaa29bbcfb6b3b66a51491950fff1978aa905fd174763e32fbc728ce",
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/9583726828/v2raya_windows_x64_unstable-20240619.r1542.62c14cc9.exe.zip",
+            "hash": "906b0263fea72cf00598530298293806a33e534e43f89445c168ae39ede07c10",
             "pre_install": "Rename-Item \"$dir\\v2raya_windows_x64_unstable-$version.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force"
         },
         "arm64": {
-            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/9553502018/v2raya_windows_arm64_unstable-20240618.r1540.1c486b40.exe.zip",
-            "hash": "a0e9b5ac1f47cd3ed7f6d151a676d1d0351e9bde03336ad1c58c7a12656e1087",
+            "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/9583726828/v2raya_windows_arm64_unstable-20240619.r1542.62c14cc9.exe.zip",
+            "hash": "49d7f2cf5f186c98050e2787ad46370a9bb6a366a31c02f602b550f4fa71b340",
             "pre_install": "Rename-Item \"$dir\\v2raya_windows_arm64_unstable-$version.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force"
         }
     },
