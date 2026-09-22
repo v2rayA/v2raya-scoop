@@ -1,5 +1,5 @@
 {
-    "version": "2.5.6",
+    "version": "2.5.7",
     "description": "v2rayA(stable version, inno installer). A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan, Tuic and Juicity protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -8,12 +8,12 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/v2rayA/v2rayA/releases/download/v2.5.6/installer_windows_inno_x64_2.5.6.exe#/v2rayA.exe",
-            "hash": "4603dc440d0f849eb5c7aeffc8314210479f87ffa7522900500fec2dac501ac2"
+            "url": "https://github.com/v2rayA/v2rayA/releases/download/v2.5.7/installer_windows_inno_x64_2.5.7.exe#/v2rayA.exe",
+            "hash": "ff66a417700bb09abdaf640d25924197564b97fbf571a28b4980acd918c520ab"
         },
         "arm64": {
-            "url": "https://github.com/v2rayA/v2rayA/releases/download/v2.5.6/installer_windows_inno_arm64_2.5.6.exe#/v2rayA.exe",
-            "hash": "a895918f1c8cb9e005b67ca3fb38f7cdce182dcb42ad7fc64ac228b78209cefa"
+            "url": "https://github.com/v2rayA/v2rayA/releases/download/v2.5.7/installer_windows_inno_arm64_2.5.7.exe#/v2rayA.exe",
+            "hash": "2ec8d9bc27451400c33f1f76c274a0d50262012c462721bfe26ddc6206c59103"
         }
     },
     "installer": {
