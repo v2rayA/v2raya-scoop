@@ -34,14 +34,13 @@ English | [**简体中文**](https://github.com/v2rayA/v2raya-scoop/blob/main/RE
 
 ```powershell
 > scoop install v2raya-np # stable version (recommended)
-> #scoop install v2raya-unstable-np # unstable version
 ```
 
 #### Using the binary
 
 ```powershell
-> scoop install v2raya
-> scoop install v2ray-rules-dat # install V2Ray rules dat(optional)
+> scoop install v2raya            # bundles v2raya and the matching v2raya_core
+> scoop install v2ray-rules-dat   # install geoip.dat/geosite.dat (optional)
 ```
 
 ## How to use
@@ -56,8 +55,9 @@ You can use `Win + R` to open a Runs window, and run `reset-passwd-v2raya-np` co
 
 ### Using the binary
 
-> -   `v2raya` command has been shimed by Scoop to run v2rayA with `--lite` arg, `v2rayawin` command is the origin v2rayA.
-> -   Env `V2RAYA_V2RAY_BIN` will be set to `$(scoop prefix v2ray)\\v2ray.exe`.
+> -   `v2raya` command has been shimed by Scoop to run v2rayA with the `--lite` arg, `v2rayawin` command is the origin v2rayA.
+> -   The release's `v2raya_core` is installed next to `v2raya`, so v2rayA finds its own core automatically.
+> -   `wintun.dll` (installed via the `wintun-dll` package) is copied next to the core for the TUN mode; run `v2rayaWin` as administrator to use it.
 
 #### Start/Stop v2rayA
 
@@ -80,14 +80,10 @@ You can use `Win + R` to open a Runs window, and run `v2raya` command in it.
 > reg import "$(scoop prefix v2raya)\remove-startup.reg"
 ```
 
-#### Use xray core
+#### Rule data
+
+v2rayA downloads `geoip.dat` and `geosite.dat` on the first start when they are missing. To install them ahead of time and keep them updated with `scoop update`, install the optional package:
 
 ```powershell
-> scoop install v2raya/xray
-
-# use v2raya core
-> scoop reset v2raya
-
-# use xray core
-> scoop reset xray
+> scoop install v2ray-rules-dat
 ```

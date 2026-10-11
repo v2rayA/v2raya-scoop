@@ -1,6 +1,6 @@
 {
     "version": "2.5.10",
-    "description": "v2rayA(stable version, inno installer). A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan, Tuic and Juicity protocols.",
+    "description": "v2rayA(stable version, inno installer). A web GUI client for its own Xray-based core, supporting VMess, VLESS, Shadowsocks, Trojan, TUIC, Juicity and AnyTLS protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
         "identifier": "AGPL-3.0-only",
@@ -18,12 +18,11 @@
     },
     "installer": {
         "script": [
-            "$args = @('/VERYSILENT', '/NORESTART', \"/DIR=`\"$dir`\"\")",
-            "Start-Process \"$dir\\v2rayA.exe\" -ArgumentList $args -Wait -Verb RunAs",
+            "$installArgs = @('/VERYSILENT', '/NORESTART', \"/DIR=`\"$dir`\"\")",
+            "Start-Process \"$dir\\v2rayA.exe\" -ArgumentList $installArgs -Wait -Verb RunAs",
             "@('reset-passwd-v2raya-np') | ForEach-Object {",
             "    Copy-Item \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\" \"$dir\\$_.ps1\"",
             "}",
-            "#Remove-Item \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\v2rayA\" -Force -Recurse -ErrorAction 'SilentlyContinue'",
             "Remove-Item \"$dir\\v2rayA.exe\" -Force -ErrorAction 'SilentlyContinue'",
             "$v2raya_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath('CommonStartMenu'), 'Programs', 'v2rayA')",
             "if ($global) { $startmenu = 'CommonStartMenu' } else { $startmenu = 'StartMenu' }",
@@ -31,6 +30,7 @@
             "Move-Item \"$v2raya_startmenu_folder\" \"$scoop_startmenu_folder\\\" -ErrorAction 'SilentlyContinue' -Force"
         ]
     },
+    "pre_uninstall": "if (Get-Service -Name v2rayA -ErrorAction 'SilentlyContinue') { Stop-Service -Name v2rayA -Force }",
     "uninstaller": {
         "script": [
             "Start-Process \"$dir\\unins000.exe\" -ArgumentList @('/VERYSILENT', '/NORESTART') -Wait -Verb RunAs",
@@ -40,10 +40,8 @@
         ]
     },
     "bin": [
-        "v2rayA-service.exe",
         "reset-passwd-v2raya-np.ps1"
     ],
-    "persist": "config",
     "checkver": {
         "url": "https://api.github.com/repos/v2rayA/v2raya/releases/latest",
         "regex": "installer_windows_inno_x64_([\\d.]+)\\.exe"

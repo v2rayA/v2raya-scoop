@@ -34,14 +34,13 @@
 
 ```powershell
 > scoop install v2raya-np # 稳定版本（推荐）
-> # scoop install v2raya-unstable-np # 不稳定版本
 ```
 
 #### 使用二进制文件
 
 ```powershell
-> scoop install v2raya
-> scoop install v2ray-rules-dat # 可选
+> scoop install v2raya          # 同时安装 v2raya 与配套的 v2raya_core
+> scoop install v2ray-rules-dat # 安装 geoip.dat/geosite.dat（可选）
 ```
 
 ## 如何使用
@@ -57,7 +56,8 @@
 ### 使用二进制文件
 
 > -   `v2raya` 命令已被 Scoop 绑定，以 `--lite` 参数运行 v2rayA，`v2rayawin` 命令是原始的 v2rayA。
-> -   环境变量 `V2RAYA_V2RAY_BIN` 将被设置为 `$(scoop prefix v2ray)\\v2ray.exe`。
+> -   发布包中的 `v2raya_core` 会与 `v2raya` 安装在同一目录，v2rayA 会自动找到自己的内核。
+> -   已通过 `wintun-dll` 包将 `wintun.dll` 复制到内核旁以供 TUN 模式使用；以管理员身份运行 `v2rayaWin` 即可使用。
 
 #### 启动/停止 v2rayA
 
@@ -80,14 +80,10 @@
 > reg import "$(scoop prefix v2raya)\remove-startup.reg"
 ```
 
-#### 使用 xray 内核
+#### 规则数据
+
+首次启动时若缺少 `geoip.dat` 与 `geosite.dat`，v2rayA 会自动下载。若希望提前安装并随 `scoop update` 一同更新，可安装可选包：
 
 ```powershell
-> scoop install v2raya/xray
-
-# 回退使用 v2ray 内核
-> scoop reset v2raya
-
-# 使用 xray 内核
-> scoop reset xray
+> scoop install v2ray-rules-dat
 ```
