@@ -1,5 +1,5 @@
 {
-    "version": "2.5.10",
+    "version": "2.5.13",
     "description": "v2rayA. A web GUI client for its own Xray-based core, supporting VMess, VLESS, Shadowsocks, Trojan, TUIC, Juicity and AnyTLS protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -17,22 +17,22 @@
     "architecture": {
         "64bit": {
             "url": [
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.10/v2raya_windows_x64_2.5.10.exe#/v2raya.exe",
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.10/v2raya_core_windows_x64_2.5.10.exe#/v2raya_core.exe"
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.13/v2raya_windows_x64_2.5.13.exe#/v2raya.exe",
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.13/v2raya_core_windows_x64_2.5.13.exe#/v2raya_core.exe"
             ],
             "hash": [
-                "226e3a000c896ee5994bd76fed0bf4ea8c5f457aee266b3c8c7969116b6a7ac0",
-                "60393f4e3d1c9cc54edb9c996bc3101b937898c1cebd45b7840f82a2a50f480e"
+                "88a91c39c519d33dfade0fd9ea5354e0ff10372debf65ef35454dcda0073d746",
+                "1994b1281c647654604ddc37c19bfba487cfc741d9a3099331009579391abcfb"
             ]
         },
         "arm64": {
             "url": [
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.10/v2raya_windows_arm64_2.5.10.exe#/v2raya.exe",
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.10/v2raya_core_windows_arm64_2.5.10.exe#/v2raya_core.exe"
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.13/v2raya_windows_arm64_2.5.13.exe#/v2raya.exe",
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.13/v2raya_core_windows_arm64_2.5.13.exe#/v2raya_core.exe"
             ],
             "hash": [
-                "adfb05b0b978dc2d0f9d3e96b5e680841daef5cc5f903734b0024987871a16e4",
-                "122bb463680adf2b5cd0541de2f84a25e5efd6a8b23f2cb7d267ab3466834582"
+                "a4c9d4c7db5857af49d72593a9431be22bb6c4f74e3fde7a6203a1eefe1974b5",
+                "ee253351a8b4aef465c85aaa120669f64bb607cf3a91499e6b46a0ce0b4207a8"
             ]
         }
     },
