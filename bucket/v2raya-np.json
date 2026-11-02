@@ -1,5 +1,5 @@
 {
-    "version": "2.5.10",
+    "version": "2.5.13",
     "description": "v2rayA(stable version, inno installer). A web GUI client for its own Xray-based core, supporting VMess, VLESS, Shadowsocks, Trojan, TUIC, Juicity and AnyTLS protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -8,12 +8,12 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/v2rayA/v2rayA/releases/download/v2.5.10/installer_windows_inno_x64_2.5.10.exe#/v2rayA.exe",
-            "hash": "96e639542e352ed12b09b81ecfb054bbd982bce662b20b714eb39f537a8ae0ac"
+            "url": "https://github.com/v2rayA/v2rayA/releases/download/v2.5.13/installer_windows_inno_x64_2.5.13.exe#/v2rayA.exe",
+            "hash": "58a459ab59fd0bb8a391ea657d59bff27ac208fc83dd9b1d22677e193fa3f81b"
         },
         "arm64": {
-            "url": "https://github.com/v2rayA/v2rayA/releases/download/v2.5.10/installer_windows_inno_arm64_2.5.10.exe#/v2rayA.exe",
-            "hash": "93e441d4db48591e30335891c6509546672b8c1e78be5e951cfa8f521903869a"
+            "url": "https://github.com/v2rayA/v2rayA/releases/download/v2.5.13/installer_windows_inno_arm64_2.5.13.exe#/v2rayA.exe",
+            "hash": "1a62798a47feb94efd7d6f952a2ae86b91bd0a973dca04efb116d15418eb0a8f"
         }
     },
     "installer": {
@@ -39,9 +39,7 @@
             "Remove-Item \"$scoop_startmenu_folder\\v2rayA\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
         ]
     },
-    "bin": [
-        "reset-passwd-v2raya-np.ps1"
-    ],
+    "bin": "reset-passwd-v2raya-np.ps1",
     "checkver": {
         "url": "https://api.github.com/repos/v2rayA/v2raya/releases/latest",
         "regex": "installer_windows_inno_x64_([\\d.]+)\\.exe"
