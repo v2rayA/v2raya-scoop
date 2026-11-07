@@ -1,5 +1,5 @@
 {
-    "version": "1.1.4",
+    "version": "1.1.5",
     "description": "A Juicity and Shadowsocks GUI client with system proxy and tray support.",
     "homepage": "https://github.com/juicity/juicity-rs",
     "license": {
@@ -8,12 +8,12 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/juicity/juicity-rs/releases/download/v1.1.4/juicity-gui-windows-x86_64.zip",
-            "hash": "c2decb2eefc5eb7047cea827248f2cb6243fd52495aad2362b6c1bba86c4cb85"
+            "url": "https://github.com/juicity/juicity-rs/releases/download/v1.1.5/juicity-gui-windows-x86_64.zip",
+            "hash": "c720d834e905684ac0180f3ff4e779c7bd2c1b640a1cf8b47e4d0c67f487e9c5"
         },
         "arm64": {
-            "url": "https://github.com/juicity/juicity-rs/releases/download/v1.1.4/juicity-gui-windows-aarch64.zip",
-            "hash": "72cabb2f7c6099397d79778ea0980fbe387b62b1756eaaa5d44e9455305f3c48"
+            "url": "https://github.com/juicity/juicity-rs/releases/download/v1.1.5/juicity-gui-windows-aarch64.zip",
+            "hash": "7e4deca936c0950a39a00b4655e0bcca8ed48a7b686936b96710c7f25601a411"
         }
     },
     "bin": "juicity-gui.exe",
