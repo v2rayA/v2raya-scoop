@@ -1,5 +1,5 @@
 {
-    "version": "2.5.13",
+    "version": "2.5.14",
     "description": "v2rayA. A web GUI client for its own Xray-based core, supporting VMess, VLESS, Shadowsocks, Trojan, TUIC, Juicity and AnyTLS protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -17,22 +17,22 @@
     "architecture": {
         "64bit": {
             "url": [
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.13/v2raya_windows_x64_2.5.13.exe#/v2raya.exe",
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.13/v2raya_core_windows_x64_2.5.13.exe#/v2raya_core.exe"
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.14/v2raya_windows_x64_2.5.14.exe#/v2raya.exe",
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.14/v2raya_core_windows_x64_2.5.14.exe#/v2raya_core.exe"
             ],
             "hash": [
-                "88a91c39c519d33dfade0fd9ea5354e0ff10372debf65ef35454dcda0073d746",
-                "1994b1281c647654604ddc37c19bfba487cfc741d9a3099331009579391abcfb"
+                "43d661ec3ee61d57dcc581d5d246bc645d12f48bffcddc0a10d72753bf1a3d05",
+                "4a31d95d6a07a606349b341f3cd29f59bca66d3f8934285e6b45e19b066f0b30"
             ]
         },
         "arm64": {
             "url": [
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.13/v2raya_windows_arm64_2.5.13.exe#/v2raya.exe",
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.13/v2raya_core_windows_arm64_2.5.13.exe#/v2raya_core.exe"
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.14/v2raya_windows_arm64_2.5.14.exe#/v2raya.exe",
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.14/v2raya_core_windows_arm64_2.5.14.exe#/v2raya_core.exe"
             ],
             "hash": [
-                "a4c9d4c7db5857af49d72593a9431be22bb6c4f74e3fde7a6203a1eefe1974b5",
-                "ee253351a8b4aef465c85aaa120669f64bb607cf3a91499e6b46a0ce0b4207a8"
+                "e4a5d61fe89d338a47ed90da77384e509a5bd12baad254dc6f48f0823392972c",
+                "2519e737c40faf3d885bd7a99c03d5d32bfa41308677323e9ee9bf86c1cf4d21"
             ]
         }
     },
