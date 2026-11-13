@@ -1,5 +1,5 @@
 {
-    "version": "2.5.14",
+    "version": "2.5.15",
     "description": "v2rayA. A web GUI client for its own Xray-based core, supporting VMess, VLESS, Shadowsocks, Trojan, TUIC, Juicity and AnyTLS protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -17,22 +17,22 @@
     "architecture": {
         "64bit": {
             "url": [
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.14/v2raya_windows_x64_2.5.14.exe#/v2raya.exe",
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.14/v2raya_core_windows_x64_2.5.14.exe#/v2raya_core.exe"
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.15/v2raya_windows_x64_2.5.15.exe#/v2raya.exe",
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.15/v2raya_core_windows_x64_2.5.15.exe#/v2raya_core.exe"
             ],
             "hash": [
-                "43d661ec3ee61d57dcc581d5d246bc645d12f48bffcddc0a10d72753bf1a3d05",
-                "4a31d95d6a07a606349b341f3cd29f59bca66d3f8934285e6b45e19b066f0b30"
+                "8c0b788f9ed2646580c4c1b295a9d975463669163dc2e420468e7d68f9b1dfd1",
+                "efd3bea6c98f23e08eb495063daf11558b62861115bdacb2858fb621555568ae"
             ]
         },
         "arm64": {
             "url": [
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.14/v2raya_windows_arm64_2.5.14.exe#/v2raya.exe",
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.14/v2raya_core_windows_arm64_2.5.14.exe#/v2raya_core.exe"
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.15/v2raya_windows_arm64_2.5.15.exe#/v2raya.exe",
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.15/v2raya_core_windows_arm64_2.5.15.exe#/v2raya_core.exe"
             ],
             "hash": [
-                "e4a5d61fe89d338a47ed90da77384e509a5bd12baad254dc6f48f0823392972c",
-                "2519e737c40faf3d885bd7a99c03d5d32bfa41308677323e9ee9bf86c1cf4d21"
+                "dd816b477b7e2c5e077d889f19f90927d28f199d998ea635a2c8735b93920701",
+                "ef84f34815329b46d2ad9e90ec7bd5cdb565c4012acd00d0636e14f17c6eb7fa"
             ]
         }
     },
