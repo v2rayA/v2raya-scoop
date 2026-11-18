@@ -1,5 +1,5 @@
 {
-    "version": "2.5.15",
+    "version": "2.5.16",
     "description": "v2rayA. A web GUI client for its own Xray-based core, supporting VMess, VLESS, Shadowsocks, Trojan, TUIC, Juicity and AnyTLS protocols.",
     "homepage": "https://github.com/v2rayA/v2raya",
     "license": {
@@ -17,22 +17,22 @@
     "architecture": {
         "64bit": {
             "url": [
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.15/v2raya_windows_x64_2.5.15.exe#/v2raya.exe",
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.15/v2raya_core_windows_x64_2.5.15.exe#/v2raya_core.exe"
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.16/v2raya_windows_x64_2.5.16.exe#/v2raya.exe",
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.16/v2raya_core_windows_x64_2.5.16.exe#/v2raya_core.exe"
             ],
             "hash": [
-                "8c0b788f9ed2646580c4c1b295a9d975463669163dc2e420468e7d68f9b1dfd1",
-                "efd3bea6c98f23e08eb495063daf11558b62861115bdacb2858fb621555568ae"
+                "dde4dc68fa76c047e30e660901644fca140377eb82a8b4fa008476e5d8fc8c8b",
+                "1fdb2614f83202928a3d84b9fd0b808871ef2f675c8f3d08bcf2dc726404c041"
             ]
         },
         "arm64": {
             "url": [
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.15/v2raya_windows_arm64_2.5.15.exe#/v2raya.exe",
-                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.15/v2raya_core_windows_arm64_2.5.15.exe#/v2raya_core.exe"
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.16/v2raya_windows_arm64_2.5.16.exe#/v2raya.exe",
+                "https://github.com/v2rayA/v2rayA/releases/download/v2.5.16/v2raya_core_windows_arm64_2.5.16.exe#/v2raya_core.exe"
             ],
             "hash": [
-                "dd816b477b7e2c5e077d889f19f90927d28f199d998ea635a2c8735b93920701",
-                "ef84f34815329b46d2ad9e90ec7bd5cdb565c4012acd00d0636e14f17c6eb7fa"
+                "1291431d9b9136f70699ec19c6930be58f90170a555393a07f25ddde424ac11d",
+                "594b4675c37f3f734e3f6ba418ab9a6a879d77e396a29e274774c7cc9391b9d6"
             ]
         }
     },
